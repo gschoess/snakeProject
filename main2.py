@@ -8,9 +8,9 @@ import shelve
 # import pygame_textinput
 from pygame import *
 from pygame.sprite import *
-from controller.SceneController import SceneController
+from director.SceneDirector import SceneController
 
-from sprites.snake import Snake
+from sprites.Snake import Snake
 
 pygame.init()
 
