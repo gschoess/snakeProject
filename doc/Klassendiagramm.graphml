@@ -128,7 +128,7 @@ update_current_music()</y:MethodLabel>
       <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="169.0" width="230.99999999999994" x="-138.37499999999994" y="-17.166666666666657"/>
+          <y:Geometry height="182.0" width="230.99999999999994" x="-138.37499999999994" y="-23.666666666666657"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="94.34912109374997" xml:space="preserve" y="26.701171875">Scene<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -138,7 +138,9 @@ bg_surface: Surface
 sprites_groups: pygame.sprite.Group []</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">load_scene()
 unload_scene()
-update_scene()
+handle_events()
+refresh_display()
+
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
