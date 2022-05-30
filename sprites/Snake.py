@@ -13,3 +13,12 @@ class Snake(pygame.sprite.Group):
 
     def update(self):
         pass
+
+    def move(self):
+        pass
+
+    def grow(self):
+        pass
+
+    def detect_collission(self):
+        pass
