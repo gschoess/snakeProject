@@ -15,6 +15,8 @@ def main():
     size = (640, 480)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption('Python - The Snake Game')
+
+
     # Entities
     tile_counter = 1
     snake1 = Snake(tile_counter)
