@@ -110,14 +110,14 @@ current_scene: Scene
 events: pygame.event []
 display: pygame.display
 
-main_menu: Scene
-game: Scene
-highscore: Scene
-how_to: Scene
+main_menu: MainMenu
+game: Game
+highscore: Highscore
+how_to: HowTo
 </y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">load_Scene()
+            <y:MethodLabel xml:space="preserve">switchScene()
 handOverEventsToCurrentScene()
-redrawCurrentScene()
+refresh_display()
 update_current_music()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -128,7 +128,7 @@ update_current_music()</y:MethodLabel>
       <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="150.7869791666668" width="230.99999999999994" x="-138.37499999999994" y="-8.060156250000063"/>
+          <y:Geometry height="169.0" width="230.99999999999994" x="-138.37499999999994" y="-17.166666666666657"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="94.34912109374997" xml:space="preserve" y="26.701171875">Scene<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -136,7 +136,8 @@ update_current_music()</y:MethodLabel>
             <y:AttributeLabel xml:space="preserve">display: pygame.display
 bg_surface: Surface
 sprites_groups: pygame.sprite.Group []</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">build_scene()
+            <y:MethodLabel xml:space="preserve">load_scene()
+unload_scene()
 update_scene()
 </y:MethodLabel>
           </y:UML>
@@ -164,7 +165,7 @@ update_scene()
       <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="110.0" x="-77.87499999999994" y="-66.06015625000006"/>
+          <y:Geometry height="28.0" width="110.0" x="-77.87499999999997" y="-66.06015625000006"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.99169921875" x="3.504150390625" xml:space="preserve" y="3.0">pygame.surface<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
