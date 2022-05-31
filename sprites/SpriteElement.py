@@ -18,10 +18,6 @@ class SpriteElement(pygame.sprite.Sprite):
         self.dir_y = dir_y
         self.sound = pygame.mixer.Sound(sound)
 
-    def update(self):
-        self.rect.left += self.dir_x
-        self.rect.top += self.dir_y
-
     def update_dir(self, dir_x, dir_y):
         self.dir_x = dir_x
         self.dir_y = dir_y
