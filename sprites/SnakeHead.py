@@ -12,6 +12,4 @@ class SnakeHead(SpriteElement):
         self.rect.left += self.dir_x * self.scale_x
         self.rect.top += self.dir_y * self.scale_y
 
-    def set_dir(self, dir_x, dir_y):
-        self.dir_x = dir_x
-        self.dir_y = dir_y
+

@@ -23,21 +23,29 @@ class Game(Scene):
     def handle_events(self, events):
 
         for gevent in events:
-            if gevent.type == pygame.QUIT:
+            if gevent.type == QUIT:
                 self.scene_dir.keepGoing = False
 
-            if gevent.type == pygame.KEYDOWN:
+            if gevent.type == KEYDOWN:
                 if gevent.key == pygame.K_LEFT:
-                    self.snake.turn(-1, 0)
+                    if self.snake.head.dir_x != 1:
+                        self.snake.turn(-1, 0)
 
-                elif gevent.key == pygame.K_RIGHT:
-                    self.snake.turn(1, 0)
+                elif gevent.key == K_RIGHT:
+                    if self.snake.head.dir_x != -1:
+                        self.snake.turn(1, 0)
 
-                elif gevent.key == pygame.K_UP:
-                    self.snake.turn(0, -1)
+                elif gevent.key == K_UP:
+                    if self.snake.head.dir_y != 1:
+                        self.snake.turn(0, -1)
 
-                elif gevent.key == pygame.K_DOWN:
-                    self.snake.turn(0, 1)
+                elif gevent.key == K_DOWN:
+                    if self.snake.head.dir_y != -1:
+                        self.snake.turn(0, 1)
+
+                elif gevent.key == K_ESCAPE:
+                    self.scene_dir.keepGoing = False
+
 
         if self.snake.head.dir_x or self.snake.head.dir_y:
             self.snake.follow_head()

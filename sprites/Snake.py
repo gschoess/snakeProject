@@ -4,7 +4,6 @@ import pygame
 
 from sprites.SnakeHead import SnakeHead
 from sprites.SnakeBodyElement import SnakeBodyElement
-from sprites.SnakeElement import SnakeElement
 
 
 class Snake(pygame.sprite.Group):
@@ -30,17 +29,14 @@ class Snake(pygame.sprite.Group):
     Move the BodyElement to the Place of its Predecessor
     """
     def follow_head(self):
-        self.body_elements[0].move(self.head.rect.left, self.head.rect.top)
-        for i in range(len(self.body_elements)-1, -1, -1):
-            self.body_elements[i].move(self.body_elements[i-1].rect.left, self.body_elements[i-1].rect.top)
+        self.body_elements[0].set_new_pos(self.head.rect.left, self.head.rect.top)
+        for i in range(1, len(self.body_elements)):
+            self.body_elements[i].set_new_pos(self.body_elements[i-1].rect.left, self.body_elements[i-1].rect.top)
 
     def add_element(self):
         pass
 
     def update(self):
-        pass
-
-    def move(self):
         pass
 
     def grow(self):
