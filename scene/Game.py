@@ -22,13 +22,26 @@ class Game(Scene):
 
     def handle_events(self, events):
 
-        for game_event in events:
-            if game_event.type == pygame.QUIT:
+        # in every Tick update the direction of one SnakeElement with the direction of its predecessor
+        self.snake.follow_head()
+
+        for gevent in events:
+            if gevent.type == pygame.QUIT:
                 self.scene_dir.keepGoing = False
-            elif game_event.type == MOUSEBUTTONDOWN:
-                pass
-            elif game_event.type == USEREVENT:
-                pass
+
+            if gevent.type == pygame.KEYDOWN:
+                if gevent.key == pygame.K_LEFT:
+                    self.snake.turn(-1, 0)
+
+                elif gevent.key == pygame.K_RIGHT:
+                    self.snake.turn(1, 0)
+
+                elif gevent.key == pygame.K_UP:
+                    self.snake.turn(0, -1)
+
+                elif gevent.key == pygame.K_DOWN:
+                    self.snake.turn(0, 1)
+
 
     def refresh(self):
         # Background Surfaces
@@ -42,4 +55,3 @@ class Game(Scene):
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.update(sprite_group)
                 pygame.sprite.Group.draw(sprite_group, self.window)
-
