@@ -11,8 +11,8 @@ RIGHT = 'right'
 class Snake(pygame.sprite.Sprite):
     def __init__(self, screen):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("images/snake_head.png")
-        self.image = pygame.transform.scale(self.image, (10, 10))
+        self.image = pygame.image.load("media/images/snake_head.png")
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
         # display snake head in the middle of the screen (approx.)
         self.rect.top = screen.get_rect().height / 2 - self.rect.width
@@ -29,8 +29,10 @@ class Snake(pygame.sprite.Sprite):
         grid_center = self.rect.width / 2
         for snake_element in self.body:
             pygame.draw.circle(screen, (10, 200, 10), (snake_element[0] +
-                               grid_center, snake_element[1] + grid_center),
-                               self.rect.width / 2, 5)
+                                                       grid_center,
+                                                       snake_element[
+                                                           1] + grid_center),
+                               self.rect.width / 2, 10)
 
     def update_snake(self, eat):
         """Add body part with rect.left and rect.top of the snake head to
@@ -51,5 +53,19 @@ class Snake(pygame.sprite.Sprite):
         if self.direction == RIGHT:
             self.rect.left += self.rect.width
 
+    def collide_screen(self, screen):
+        if self.rect.left < 0:
+            print("end of screen")
+            self.rect.left = 0
+        if self.rect.right > screen.get_rect().width:
+            print("end of screen")
+            self.rect.right = screen.get_rect().width
+        if self.rect.top < 0:
+            self.rect.top = 0
+            print("end of screen")
+        if self.rect.bottom > screen.get_rect().height:
+            self.rect.bottom = screen.get_rect().height
+            print("end of screen")
 
-
+    def collide_self(self):
+        pass
