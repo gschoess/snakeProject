@@ -31,6 +31,7 @@ def main():
     food_group.add(food)
     # Action --> ALTER
     # Assign Variables
+    global running
     running = True
     clock = pygame.time.Clock()
 
@@ -46,28 +47,31 @@ def main():
 
             if event.type == KEYDOWN:
                 if event.key == pygame.K_UP:
-                    snake.direction = UP
+                    if snake.direction != DOWN:
+                        snake.direction = UP
                 if event.key == pygame.K_DOWN:
-                    snake.direction = DOWN
+                    if snake.direction != UP:
+                        snake.direction = DOWN
                 if event.key == pygame.K_LEFT:
-                    snake.direction = LEFT
+                    if snake.direction != RIGHT:
+                        snake.direction = LEFT
                 if event.key == pygame.K_RIGHT:
-                    snake.direction = RIGHT
+                    if snake.direction != LEFT:
+                        snake.direction = RIGHT
                 # QUIT event, if Esc key pressed
                 if event.key == K_ESCAPE:
                     pygame.event.post(pygame.event.Event(pygame.QUIT))
         # Redisplay
-        if (snake.rect.left == food.rect.left) & \
-                (snake.rect.top == food.rect.top):
+        if pygame.sprite.collide_rect(snake, food):
             snake.update_snake(True)
             food.delete_food()
         else:
             snake.update_snake(False)
         screen.fill(black)
+        snake.collide_screen(screen)
         snake.draw_snake(sprite_group, screen)
         food.create_food(screen)
         food_group.draw(screen)
-        # pygame.display.flip()
         pygame.display.update()
 
 

@@ -7,9 +7,10 @@ from random import randint
 class FoodElement(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("images/apple.png")
-        self.image = pygame.transform.scale(self.image, (10, 10))
+        self.image = pygame.image.load("media/images/apple.png")
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
+        self.sound = pygame.mixer.Sound("media/sounds/apple_bite.ogg")
         self.alive = False
 
     def create_food(self, screen):
@@ -23,4 +24,5 @@ class FoodElement(pygame.sprite.Sprite):
             self.alive = True
 
     def delete_food(self):
+        self.sound.play()
         self.alive = False
