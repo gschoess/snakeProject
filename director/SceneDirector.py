@@ -24,7 +24,7 @@ class SceneDirector:
         pygame.init()
         # D - Display configuration
         self.screensize = (640, 480)
-        self.display = pygame.display.set_mode(self.screensize)
+        self.window = pygame.display.set_mode(self.screensize)
         pygame.display.set_caption("Python - The Snake Game")
 
         self.font = pygame.font.Font(None, 25)
@@ -62,24 +62,30 @@ class SceneDirector:
             self.clock.tick(30)
 
             # E – Event handling - get Current
-            self.hand_over_events_to_current_scene()
+            self.events_to_current_scene()
 
             # R - Refresh display
-            self.refresh_current_scene_display()
+            self.refresh_scene()
 
-    def switch_current_scene(self):
+    # TODO
+    def load_scene(self):
         pass
 
-    def hand_over_events_to_current_scene(self):
+    # TODO
+    def switch_scene(self):
+        pass
+
+    def events_to_current_scene(self):
         # E – Event handling - get Current
         self.events = pygame.event.get()
         # Handover to current scene
         self.current_scene.handle_events(self.events)
 
-    def refresh_current_scene_display(self):
-        self.current_scene.refresh_display()
+    def refresh_scene(self):
+        self.current_scene.refresh()
         pygame.display.update()
         # pygame.display.flip()  ?? Notwendig
 
+    # TODO
     def switch_music(self):
         pass

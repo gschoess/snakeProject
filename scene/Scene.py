@@ -1,28 +1,23 @@
 #!/usr/bin/python
 # ‐*‐ encoding: utf‐8 ‐*‐
 from abc import ABC, abstractmethod
+import pygame
 
 
 class Scene(ABC):
 
     def __init__(self, scene_dir):
         self.scene_dir = scene_dir
-        self.display = scene_dir.display
-        self.bg_surface = None
+        self.window = scene_dir.window
+        self.bg_surface = pygame.Surface(self.scene_dir.screensize)
+        self.bg_surface.convert()
+        self.bg_surface.fill('white')
         self.sprite_groups = []
-
-    @abstractmethod
-    def load_scene(self):
-        pass
-
-    @abstractmethod
-    def unload_scene(self):
-        pass
 
     @abstractmethod
     def handle_events(self, events):
         pass
 
     @abstractmethod
-    def refresh_display(self):
+    def refresh(self):
         pass

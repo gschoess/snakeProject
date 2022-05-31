@@ -37,7 +37,7 @@ grow()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="206.33333333333331" width="184.0" x="176.25" y="-35.833333333333314"/>
+          <y:Geometry height="206.33333333333331" width="184.0" x="176.25" y="-26.159382284382247"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="134.7490234375" x="24.62548828125" xml:space="preserve" y="3.0">pygame.sprite.Group<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -61,7 +61,7 @@ copy()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="265.8333333333333" width="198.24999999999997" x="-420.2499999999999" y="-65.58333333333331"/>
+          <y:Geometry height="302.25291375291374" width="198.24999999999997" x="-420.2499999999999" y="-65.58333333333331"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="92.14990234375" x="53.050048828124986" xml:space="preserve" y="3.0">SceneDirector<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -69,8 +69,9 @@ copy()</y:MethodLabel>
             <y:AttributeLabel xml:space="preserve">music_mixer: pygame.mixer
 current_scene: Scene
 events: pygame.event []
-clock: pygame.time.clock
-display: pygame.display
+clock: pygame.time.Clock
+window: pygame.Surface
+font: pygame.font.Font
 
 main_menu: MainMenu
 game: Game
@@ -78,10 +79,11 @@ highscore: Highscore
 how_to: HowTo
 
 </y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">switchScene()
-handOverEventsToCurrentScene()
-refresh_display()
-update_current_music()</y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">load_scene()
+switch_scene()
+events_to_current_scene()
+refresh_scene()
+switch_music()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -90,18 +92,16 @@ update_current_music()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="182.0" width="230.99999999999994" x="-138.37499999999994" y="-23.666666666666657"/>
+          <y:Geometry height="147.85664335664336" width="230.99999999999994" x="-138.37499999999994" y="3.0789627039627305"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="94.34912109374997" xml:space="preserve" y="26.701171875">Scene<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="abstract" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">display: pygame.display
+            <y:AttributeLabel xml:space="preserve">scene_dir: SceneDirector
 bg_surface: Surface
 sprites_groups: pygame.sprite.Group []</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">load_scene()
-unload_scene()
-handle_events()
-refresh_display()
+            <y:MethodLabel xml:space="preserve">handle_events()
+refresh()
 
 </y:MethodLabel>
           </y:UML>
@@ -217,7 +217,7 @@ refresh_display()
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="167.32698961937712" width="184.00000000000006" x="676.4333910034601" y="-16.33016147635523"/>
+          <y:Geometry height="167.32698961937712" width="184.00000000000006" x="676.4333910034601" y="-6.656210427404162"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="91.41357421875" x="46.29321289062503" xml:space="preserve" y="26.701171875">SpriteElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -237,7 +237,7 @@ dir_y: int
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="176.0" x="430.3416955017301" y="53.33333333333334"/>
+          <y:Geometry height="28.0" width="176.0" x="430.3416955017301" y="63.00728438228441"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="86.33544921875" x="44.832275390625" xml:space="preserve" y="3.0">FoodElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>

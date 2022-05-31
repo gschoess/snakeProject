@@ -10,9 +10,7 @@ class Game(Scene):
 
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
-        self.bg_surface = pygame.Surface(self.scene_dir.screensize)
-        self.bg_surface.convert()
-        self.bg_surface.fill('white')
+        self.bg_surface.fill('green')
 
         # Photo Background
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
@@ -32,21 +30,16 @@ class Game(Scene):
             elif game_event.type == USEREVENT:
                 pass
 
-    def refresh_display(self):
+    def refresh(self):
         # Background Surfaces
-        self.display.blit(self.bg_surface, (0, 0))
+        self.window.blit(self.bg_surface, (0, 0))
         text = self.scene_dir.font.render('Hello World', True,
                                           Color('black'), Color('white'))
-        self.display.blit(text, (450, 10))
+        self.window.blit(text, (450, 10))
 
         # Sprites in Spritegroups
         if self.sprite_groups:
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.update(sprite_group)
-                pygame.sprite.Group.draw(sprite_group, self.display)
+                pygame.sprite.Group.draw(sprite_group, self.window)
 
-    def unload_scene(self):
-        pass
-
-    def load_scene(self):
-        pass
