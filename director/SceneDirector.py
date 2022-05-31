@@ -59,7 +59,7 @@ class SceneDirector:
         # L - Set up main loop
         while self.keepGoing:
             # T - Timer to set frame rate
-            self.clock.tick(30)
+            self.clock.tick(10)
 
             # E – Event handling - get Current
             self.events_to_current_scene()

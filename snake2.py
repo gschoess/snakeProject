@@ -36,7 +36,7 @@ class Snake(pygame.sprite.Sprite):
 
     def update_snake(self, eat):
         """Add body part with rect.left and rect.top of the snake head to
-        the body list. Remove this body part, if the snake hasn't eaten.
+        the body list. Remove last body part, if the snake hasn't eaten.
         """
         self.body.append((self.rect.left, self.rect.top))
         self.move()

@@ -22,9 +22,6 @@ class Game(Scene):
 
     def handle_events(self, events):
 
-        # in every Tick update the direction of one SnakeElement with the direction of its predecessor
-        self.snake.follow_head()
-
         for gevent in events:
             if gevent.type == pygame.QUIT:
                 self.scene_dir.keepGoing = False
@@ -42,6 +39,8 @@ class Game(Scene):
                 elif gevent.key == pygame.K_DOWN:
                     self.snake.turn(0, 1)
 
+        if self.snake.head.dir_x or self.snake.head.dir_y:
+            self.snake.follow_head()
 
     def refresh(self):
         # Background Surfaces
