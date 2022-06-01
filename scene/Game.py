@@ -57,7 +57,7 @@ class Game(Scene):
                     self.scene_dir.keepGoing = False
 
         if self.snake.head.moving:
-            self.snake.follow_head()
+            self.snake.body_follow_head()
 
     def refresh(self):
         # Background Surfaces

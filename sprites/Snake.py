@@ -32,7 +32,7 @@ class Snake(pygame.sprite.Group):
     """
     Move the BodyElement to the Place of its Predecessor
     """
-    def follow_head(self):
+    def body_follow_head(self):
         self.body_elements[0].set_new_pos(self.head.rect.left, self.head.rect.top)
         for i in range(1, len(self.body_elements)):
             self.body_elements[i].set_new_pos(self.body_elements[i-1].rect.left, self.body_elements[i-1].rect.top)
