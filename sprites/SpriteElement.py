@@ -40,7 +40,7 @@ class SpriteElement(pygame.sprite.Sprite):
         self.dir_x = dir_x
         self.dir_y = dir_y
 
-    def set_to_random_position(self, surface):
+    def set_to_random_pos(self, surface):
         # set to random position on screen
         self.rect.top = randint(0, surface.get_rect().height - self.rect.height)
         self.rect.top -= self.rect.top % self.rect.height
