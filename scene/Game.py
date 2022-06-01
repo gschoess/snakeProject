@@ -3,6 +3,7 @@
 import pygame
 from pygame import *
 from scene.Scene import Scene
+from sprites.FoodElement import FoodElement
 from sprites.Snake import Snake
 
 
@@ -17,8 +18,17 @@ class Game(Scene):
         # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
         # Game Entities
+        # Sprite groups
         self.snake = Snake()  # vom Typ pygame.sprite.Group
+        self.food = pygame.sprite.Group()
+
+        # Single Sprites
+        self.apple = FoodElement(self.window)
+        self.food.add(self.apple)
+
+        # Collect all Sprites for .update() with every tick
         self.sprite_groups.append(self.snake)
+        self.sprite_groups.append(self.food)
 
     def handle_events(self, events):
 

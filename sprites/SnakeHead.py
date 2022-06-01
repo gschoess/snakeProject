@@ -11,5 +11,5 @@ class SnakeHead(SpriteElement):
 
     def update(self):
         if self.moving:
-            self.rect.left += self.dir_x * self.scale_x
-            self.rect.top += self.dir_y * self.scale_y
+            self.rect.left += self.dir_x * self.rect.width
+            self.rect.top += self.dir_y * self.rect.height

@@ -14,6 +14,7 @@ class Snake(pygame.sprite.Group):
         self.head = SnakeHead(300, 300, 1, 0, 'media/images/snake_head.png', 10, 10, 'media/sounds/pain.wav')
         self.add(self.head)
 
+
         # BODY
         self.body_elements = []
         self.body_elements.append(SnakeBodyElement(290, 300, 1, 0, 'media/images/snake_tile.png', 10, 10, 'media/sounds/pain.wav'))
