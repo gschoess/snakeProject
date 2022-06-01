@@ -2,6 +2,7 @@
 # ‐*‐ encoding: utf‐8 ‐*‐
 import pygame
 from pygame.sprite import Sprite
+from pygame.surface import Surface
 
 
 class SpriteElement(pygame.sprite.Sprite):
@@ -10,6 +11,7 @@ class SpriteElement(pygame.sprite.Sprite):
         Sprite.__init__(self)
         self.sound = sound
         self.image = pygame.image.load(image)
+        self.image = self.image.convert()
         self.image = pygame.transform.scale(self.image, (scale_x, scale_y))
         self.rect = self.image.get_rect()
         self.rect.left = x
@@ -23,5 +25,13 @@ class SpriteElement(pygame.sprite.Sprite):
         self.new_pos_y = y
 
     def set_dir(self, dir_x, dir_y):
+        if (self.dir_x == 1 and dir_y == 1) \
+                or (self.dir_y == 1 and dir_x == -1) \
+                or (self.dir_x == -1 and dir_y == 1) \
+                or (self.dir_y == -1 and dir_x == 1):
+            self.image = pygame.transform.rotate(self.image, 90)
+        else:
+            self.image = pygame.transform.rotate(self.image, -90)
+
         self.dir_x = dir_x
         self.dir_y = dir_y

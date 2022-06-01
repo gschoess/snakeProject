@@ -36,18 +36,17 @@ class Game(Scene):
                         self.snake.turn(1, 0)
 
                 elif gevent.key == K_UP:
-                    if self.snake.head.dir_y != 1:
+                    if self.snake.head.dir_y != -1:
                         self.snake.turn(0, -1)
 
                 elif gevent.key == K_DOWN:
-                    if self.snake.head.dir_y != -1:
+                    if self.snake.head.dir_y != 1:
                         self.snake.turn(0, 1)
 
                 elif gevent.key == K_ESCAPE:
                     self.scene_dir.keepGoing = False
 
-
-        if self.snake.head.dir_x or self.snake.head.dir_y:
+        if self.snake.head.moving:
             self.snake.follow_head()
 
     def refresh(self):
