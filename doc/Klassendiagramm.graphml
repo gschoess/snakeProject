@@ -18,15 +18,15 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="169.0" width="184.0" x="176.25" y="244.0"/>
+          <y:Geometry height="169.0" width="238.67987321711576" x="121.57012678288424" y="244.0"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="70.84912109375" xml:space="preserve" y="3.0">Snake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="98.18905770230788" xml:space="preserve" y="3.0">Snake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">
-
-</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">move()
+            <y:AttributeLabel xml:space="preserve">head: SnakeHead
+body_elements[]: SnakeBodyElement</y:AttributeLabel>
+            <y:MethodLabel xml:space="preserve">turn()
+body_follow_head()
 detect_collision()
 grow()</y:MethodLabel>
           </y:UML>
@@ -42,7 +42,7 @@ grow()</y:MethodLabel>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="134.7490234375" x="24.62548828125" xml:space="preserve" y="3.0">pygame.sprite.Group<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">sprite_list: Sprites []
+            <y:AttributeLabel xml:space="preserve">
 </y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">add()
 remove()
@@ -100,7 +100,7 @@ switch_music()</y:MethodLabel>
             <y:AttributeLabel xml:space="preserve">scene_dir: SceneDirector
 /window: Surface
 bg_surface: Surface
-sprites_groups: pygame.sprite.Group []</y:AttributeLabel>
+sprites_groups[]: pygame.sprite.Group</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">handle_events()
 refresh()
 
@@ -273,7 +273,6 @@ update()</y:MethodLabel>
     </node>
     <node id="n14">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="83.48295454545462" width="180.0" x="470.4333910034601" y="244.0"/>
@@ -411,10 +410,9 @@ update()</y:MethodLabel>
       </data>
     </edge>
     <edge id="e12" source="n0" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:Path sx="0.0" sy="0.0" tx="-27.339936608557878" ty="103.16601444893587"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
@@ -422,7 +420,6 @@ update()</y:MethodLabel>
       </data>
     </edge>
     <edge id="e13" source="n1" target="n12">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -433,7 +430,6 @@ update()</y:MethodLabel>
       </data>
     </edge>
     <edge id="e14" source="n0" target="n14">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -444,7 +440,6 @@ update()</y:MethodLabel>
       </data>
     </edge>
     <edge id="e15" source="n14" target="n11">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="-67.59007806639715" ty="87.47249830619201">
