@@ -8,6 +8,9 @@ from scene.HowTo import HowTo
 from scene.MainMenu import MainMenu
 
 
+
+
+
 class SceneDirector:
     """
     Properties:
@@ -61,11 +64,11 @@ class SceneDirector:
             # T - Timer to set frame rate
             self.clock.tick(2)
 
-            # E – Event handling - get Current
+            # E – Event handling & Prebuilding new scene
             self.events_to_current_scene()
 
             # R - Refresh display
-            self.refresh_scene()
+            refresh_display()
 
     # TODO
     def load_scene(self):
@@ -80,13 +83,15 @@ class SceneDirector:
         self.events = pygame.event.get()
         # Handover to current scene
         self.current_scene.handle_events(self.events)
-
-    def refresh_scene(self):
-        self.current_scene.refresh()
-        pygame.display.update()
-        # pygame.display.flip()  ?? Notwendig
+        # prebuild new scene
+        self.current_scene.prebuild()
 
     # TODO
     def switch_music(self):
         pass
 
+
+# STATIC methods
+def refresh_display():
+    pygame.display.update()
+    # pygame.display.flip()  ?? Notwendig

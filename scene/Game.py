@@ -18,17 +18,16 @@ class Game(Scene):
         # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
         # Game Entities
-        # Sprite groups
-        self.snake = Snake()  # vom Typ pygame.sprite.Group
-        self.food = pygame.sprite.Group()
+        self.snake = Snake(self.window)
+        self.snake_sg = self.snake.get_spritegroup()  # Snake Body
 
-        # Single Sprites
+        self.food_sg = pygame.sprite.Group()
         self.apple = FoodElement(self.window)
-        self.food.add(self.apple)
+        self.food_sg.add(self.apple)
 
-        # Collect all Sprites for .update() with every tick
-        self.sprite_groups.append(self.snake)
-        self.sprite_groups.append(self.food)
+        # Collect all SpriteGroups for .update() with every tick
+        self.sprite_groups.append(self.snake_sg)
+        self.sprite_groups.append(self.food_sg)
 
     def handle_events(self, events):
 
@@ -38,25 +37,34 @@ class Game(Scene):
 
             if gevent.type == KEYDOWN:
                 if gevent.key == pygame.K_LEFT:
-                    if self.snake.head.dir_x != 1:
+                    if self.snake.dir_x != 1:
                         self.snake.turn(-1, 0)
 
                 elif gevent.key == K_RIGHT:
-                    if self.snake.head.dir_x != -1:
+                    if self.snake.dir_x != -1:
                         self.snake.turn(1, 0)
 
                 elif gevent.key == K_UP:
-                    if self.snake.head.dir_y != -1:
+                    if self.snake.dir_y != -1:
                         self.snake.turn(0, -1)
 
                 elif gevent.key == K_DOWN:
-                    if self.snake.head.dir_y != 1:
+                    if self.snake.dir_y != 1:
                         self.snake.turn(0, 1)
 
                 elif gevent.key == K_ESCAPE:
                     self.scene_dir.keepGoing = False
 
-    def refresh(self):
+        # Calculate new pos Snake head
+        if self.snake.moving:
+            self.snake.set_new_pos_head()
+
+        # Sprites in Spritegroups neu berechnen
+        if self.sprite_groups:
+            for sprite_group in self.sprite_groups:
+                pygame.sprite.Group.update(sprite_group)
+
+    def prebuild(self):
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
         text = self.scene_dir.font.render('Hello World', True,
@@ -66,5 +74,4 @@ class Game(Scene):
         # Sprites in Spritegroups
         if self.sprite_groups:
             for sprite_group in self.sprite_groups:
-                pygame.sprite.Group.update(sprite_group)
                 pygame.sprite.Group.draw(sprite_group, self.window)

@@ -13,7 +13,7 @@ class MainMenu(Scene):
     def handle_events(self, events):
         pass
 
-    def refresh(self):
+    def prebuild(self):
         pass
 
 

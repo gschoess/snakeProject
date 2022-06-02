@@ -19,5 +19,5 @@ class Scene(ABC):
         pass
 
     @abstractmethod
-    def refresh(self):
+    def prebuild(self):
         pass
