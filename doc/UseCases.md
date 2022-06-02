@@ -9,6 +9,8 @@
 - 3 Level incl. 3 verschiedener TiledMaps
 - Schlange wird kürzer (Punktverlust), unverwundbar, kann Loch graben, wenn sie ein Item einsetzt, dass sie eingesammelt hat
 - Pause, wenn SPACE
+- Random Snake variabler Länge bei Beginn erzeugen 
+- Snake mit festgelegtem Farbmuster
 
 # Kann
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird

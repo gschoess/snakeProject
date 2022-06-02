@@ -46,3 +46,6 @@ class SpriteElement(pygame.sprite.Sprite):
         self.rect.top -= self.rect.top % self.rect.height
         self.rect.left = randint(0, surface.get_rect().width - self.rect.width)
         self.rect.left -= self.rect.left % self.rect.width
+
+    def play_sound(self):
+        self.sound.play()

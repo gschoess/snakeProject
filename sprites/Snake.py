@@ -9,17 +9,23 @@ from sprites.SnakeBodyElement import SnakeBodyElement
 class Snake(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
+        # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
+        self.start_dir_x = 1
+        self.start_dir_y = 0
+        self.body_el_size = 10
+        self.body_sound = None
 
         # HEAD
-        self.head = SnakeHead(300, 300, 1, 0, 'media/images/snake_head.png', 10, 10, 'media/sounds/pain.wav')
+        self.head = SnakeHead(300, 300, self.start_dir_x, self.start_dir_y, self)
         self.add(self.head)
 
+        # TODO Verzweigte Random Snake mit variabler Länge bei Beginn erzeugen
         # BODY
         self.body_elements = []
-        self.body_elements.append(SnakeBodyElement(290, 300, 1, 0, 'media/images/snake_tile.png', 10, 10, 'media/sounds/pain.wav'))
-        self.body_elements.append(SnakeBodyElement(280, 300, 1, 0, 'media/images/snake_tile.png', 10, 10, 'media/sounds/pain.wav'))
-        self.body_elements.append(SnakeBodyElement(270, 300, 1, 0, 'media/images/snake_tile.png', 10, 10, 'media/sounds/pain.wav'))
-        self.body_elements.append(SnakeBodyElement(260, 300, 1, 0, 'media/images/snake_tile.png', 10, 10, 'media/sounds/pain.wav'))
+        self.body_elements.append(SnakeBodyElement(290, 300, 1, 0, self.body_el_size))
+        self.body_elements.append(SnakeBodyElement(280, 300, 1, 0, self.body_el_size))
+        self.body_elements.append(SnakeBodyElement(270, 300, 1, 0, self.body_el_size))
+        self.body_elements.append(SnakeBodyElement(260, 300, 1, 0, self.body_el_size))
 
         # Add body elements to sprite group (Snake) for c
         for sprite in self.body_elements:

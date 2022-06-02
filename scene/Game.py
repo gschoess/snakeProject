@@ -56,9 +56,6 @@ class Game(Scene):
                 elif gevent.key == K_ESCAPE:
                     self.scene_dir.keepGoing = False
 
-        if self.snake.head.moving:
-            self.snake.body_follow_head()
-
     def refresh(self):
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
