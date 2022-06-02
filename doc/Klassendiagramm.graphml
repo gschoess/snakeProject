@@ -18,16 +18,17 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="169.0" width="238.67987321711576" x="121.57012678288424" y="244.0"/>
+          <y:Geometry height="151.46117274167983" width="218.04595879556268" x="431.9068938193344" y="82.87937062937061"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="98.18905770230788" xml:space="preserve" y="3.0">Snake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="87.87210049153134" xml:space="preserve" y="3.0">Snake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">head: SnakeHead
 body_elements[]: SnakeBodyElement</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">turn()
 body_follow_head()
-detect_collision()
+handle_out_of_window()
+eat()
 grow()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -37,10 +38,10 @@ grow()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="206.33333333333331" width="184.0" x="176.25" y="-26.159382284382247"/>
+          <y:Geometry height="206.33333333333331" width="152.24009508716316" x="-25.569136291600586" y="-252.45250582750577"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="134.7490234375" x="24.62548828125" xml:space="preserve" y="3.0">pygame.sprite.Group<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="134.7490234375" x="8.745535824831578" xml:space="preserve" y="3.0">pygame.sprite.Group<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">
 </y:AttributeLabel>
@@ -61,7 +62,7 @@ copy()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="302.25291375291374" width="198.24999999999997" x="-420.2499999999999" y="-74.11917249417246"/>
+          <y:Geometry height="322.8868281744668" width="198.24999999999997" x="-420.2499999999999" y="-88.54628480341637"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="92.14990234375" x="53.050048828124986" xml:space="preserve" y="3.0">SceneDirector<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -83,7 +84,8 @@ how_to: HowTo
 switch_scene()
 events_to_current_scene()
 refresh_scene()
-switch_music()</y:MethodLabel>
+switch_music()
+run_game()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -92,7 +94,7 @@ switch_music()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="177.09498834498834" width="230.99999999999994" x="-138.37499999999994" y="-11.540209790209758"/>
+          <y:Geometry height="239.67395104895104" width="230.99999999999994" x="-138.37499999999994" y="-11.540209790209758"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="94.34912109374997" xml:space="preserve" y="26.701171875">Scene<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -102,7 +104,8 @@ switch_music()</y:MethodLabel>
 bg_surface: Surface
 sprites_groups[]: pygame.sprite.Group</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">handle_events()
-refresh()
+prebuild()
+
 
 </y:MethodLabel>
           </y:UML>
@@ -128,7 +131,7 @@ refresh()
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="110.0" x="-77.87499999999997" y="-66.06015625000006"/>
+          <y:Geometry height="28.0" width="110.0" x="-165.56913629160059" y="-74.11917249417246"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.99169921875" x="3.504150390625" xml:space="preserve" y="3.0">pygame.surface<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -158,15 +161,15 @@ refresh()
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="129.00743006993014" width="161.82255244755248" x="-297.7499999999999" y="460.7111013986013"/>
+          <y:Geometry height="129.00743006993014" width="184.00000000000006" x="-297.7499999999999" y="460.7111013986012"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.130859375" x="60.84584653627624" xml:space="preserve" y="3.0">Game<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.130859375" x="71.93457031250003" xml:space="preserve" y="3.0">Game<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">snake: Snake
 apple: FoodElement
-food: pygame.sprite.Group
-</y:AttributeLabel>
+food_sg: pygame.sprite.Group
+snake_sg: pygame.sprite.Group</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve"/>
           </y:UML>
         </y:UMLClassNode>
@@ -206,7 +209,7 @@ food: pygame.sprite.Group
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="64.41958041958037" width="176.0" x="680.4333910034601" y="-113.08999564449414"/>
+          <y:Geometry height="64.41958041958037" width="176.0" x="180.25" y="-113.08999564449414"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="132.59716796875" x="21.701416015625" xml:space="preserve" y="3.0">pygame.sprite.Sprite<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -221,7 +224,7 @@ food: pygame.sprite.Group
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="206.33333333333331" width="184.00000000000006" x="676.4333910034601" y="-6.656210427404162"/>
+          <y:Geometry height="239.67395104895104" width="184.00000000000006" x="176.24999999999997" y="-11.540209790209758"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="91.41357421875" x="46.29321289062503" xml:space="preserve" y="26.701171875">SpriteElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -244,10 +247,10 @@ set_to_random_pos()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="64.41958041958037" width="176.0" x="421.80585634089095" y="44.797494172494225"/>
+          <y:Geometry height="64.41958041958037" width="218.04595879556268" x="431.9068938193344" y="-11.540209790209758"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="86.33544921875" x="44.832275390625" xml:space="preserve" y="3.0">FoodElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="86.33544921875" x="65.85525478840634" xml:space="preserve" y="3.0">FoodElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve"/>
             <y:MethodLabel xml:space="preserve">update()</y:MethodLabel>
@@ -259,30 +262,14 @@ set_to_random_pos()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="83.48295454545462" width="180.0" x="470.4333910034601" y="347.9512674825175"/>
+          <y:Geometry height="83.48295454545462" width="218.04595879556268" x="431.9068938193344" y="275.8652931854199"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="125.37353515625" x="27.313232421875" xml:space="preserve" y="3.0">SnakeBodyElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="125.37353515625" x="46.33621181965634" xml:space="preserve" y="3.0">SnakeBodyElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve"/>
             <y:MethodLabel xml:space="preserve">set_new_pos()
 update()</y:MethodLabel>
-          </y:UML>
-        </y:UMLClassNode>
-      </data>
-    </node>
-    <node id="n14">
-      <data key="d4" xml:space="preserve"/>
-      <data key="d6">
-        <y:UMLClassNode>
-          <y:Geometry height="83.48295454545462" width="180.0" x="470.4333910034601" y="244.0"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="74.0908203125" x="52.95458984375" xml:space="preserve" y="3.0">SnakeHead<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-          <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">moving: Boolean
-</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">update()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -350,7 +337,7 @@ update()</y:MethodLabel>
     <edge id="e6" source="n2" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:Path sx="0.5164421553089369" sy="33.425521903237524" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
@@ -360,7 +347,7 @@ update()</y:MethodLabel>
     <edge id="e7" source="n3" target="n1">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:Path sx="56.816285459587874" sy="-95.30223720811682" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
@@ -377,20 +364,20 @@ update()</y:MethodLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e9" source="n13" target="n0">
+    <edge id="e9" source="n12" target="n11">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:Path sx="0.0" sy="0.0" tx="91.98218501139075" ty="-87.62718531468533"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="diamond"/>
+          <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e10" source="n12" target="n11">
+    <edge id="e10" source="n0" target="n11">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-81.3422633810826" ty="-19.503171856978085"/>
+          <y:Path sx="0.0" sy="0.0" tx="92.01241047196896" ty="50.313191265944766"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
@@ -398,10 +385,11 @@ update()</y:MethodLabel>
       </data>
     </edge>
     <edge id="e11" source="n13" target="n11">
+      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="768.4333910034601" y="389.6927447552448"/>
+            <y:Point x="268.25" y="317.6067704581472"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
@@ -409,44 +397,13 @@ update()</y:MethodLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e12" source="n0" target="n1">
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-27.339936608557878" ty="103.16601444893587"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="white_delta"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e13" source="n1" target="n12">
+    <edge id="e12" source="n11" target="n3">
+      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="diamond" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e14" source="n0" target="n14">
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="diamond" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e15" source="n14" target="n11">
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-67.59007806639715" ty="87.47249830619201">
-            <y:Point x="560.4333910034601" y="183.9829545454545"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="white_delta"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>

@@ -18,16 +18,15 @@ class Game(Scene):
         # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
         # Game Entities
-        self.snake = Snake(self.window)
-        self.snake_sg = self.snake.get_spritegroup()  # Snake Body
-
+        self.snake = Snake(self)
+        self.snake_sg = self.snake.get_sprite_group()  # Snake Body
         self.food_sg = pygame.sprite.Group()
-        self.apple = FoodElement(self.window)
-        self.food_sg.add(self.apple)
+        self.create_food()  # initial food
 
         # Collect all SpriteGroups for .update() with every tick
-        self.sprite_groups.append(self.snake_sg)
+        # Order determines layer of Scene, last appended SpriteGroup is drawn on top
         self.sprite_groups.append(self.food_sg)
+        self.sprite_groups.append(self.snake_sg)
 
     def handle_events(self, events):
 
@@ -59,7 +58,7 @@ class Game(Scene):
         if self.snake.moving:
             self.snake.set_new_pos_head()
 
-        # Sprites in Spritegroups neu berechnen
+        # run .update() of all sprites
         if self.sprite_groups:
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.update(sprite_group)
@@ -75,3 +74,7 @@ class Game(Scene):
         if self.sprite_groups:
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.draw(sprite_group, self.window)
+
+    def create_food(self):
+        random_food_element = FoodElement(self.window)
+        self.food_sg.add(random_food_element)
