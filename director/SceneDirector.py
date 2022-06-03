@@ -58,15 +58,18 @@ class SceneDirector:
         self.keepGoing = True
 
         # L - Set up main loop
-        while self.keepGoing:
-            # T - Timer to set frame rate
-            self.clock.tick(10)
+        if self.current_scene == self.main_menu:
+            self.main_menu.menu.mainloop(self.window)
+        else:
+            while self.keepGoing:
+                # T - Timer to set frame rate
+                self.clock.tick(10)
 
-            # E – Event handling & Prebuilding new scene
-            self.events_to_current_scene()
+                # E – Event handling & Prebuilding new scene
+                self.events_to_current_scene()
 
-            # R - Refresh display
-            refresh_display()
+                # R - Refresh display
+                refresh_display()
 
     # TODO
     def load_scene(self):
