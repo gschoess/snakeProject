@@ -2,7 +2,7 @@
 - ViewController für Views: Hauptmenü, Spiel, Highscore, HowTO
 - Bedienung der Schlange mit den Pfeiltasten
 - Schlange wird länger, wenn Sie ein Objekt isst (+ 1 Punkt)
-- Schlange stirbt, wenn sie sich selbst berührt oder den Spielfeldrand
+- Schlange stirbt, wenn sie sich selbst berührt
 
 # Soll
 - Hintergrundmusik in Abhängigkeit von Scene
