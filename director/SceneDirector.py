@@ -40,7 +40,7 @@ class SceneDirector:
         self.how_to = HowTo(self)
 
         # TODO: Update Current Scene MAIN MENU!
-        self.current_scene = self.main_menu
+        self.current_scene = self.how_to
 
         # Clock
         self.clock = pygame.time.Clock()
@@ -58,8 +58,8 @@ class SceneDirector:
         self.keepGoing = True
 
         # L - Set up main loop
-        if self.current_scene == self.main_menu:
-            self.main_menu.menu.mainloop(self.window)
+        if self.current_scene != self.game:
+            self.current_scene.menu.mainloop(self.window)
         else:
             while self.keepGoing:
                 # T - Timer to set frame rate
