@@ -13,6 +13,7 @@ class Scene(ABC):
         self.bg_surface.convert()
         self.bg_surface.fill('white')
         self.sprite_groups = []
+        self.font = pygame.font.Font(None, 25)
 
     @abstractmethod
     def handle_events(self, events):

@@ -28,9 +28,7 @@ class SceneDirector:
         # D - Display configuration
         self.screensize = (640, 480)
         self.window = pygame.display.set_mode(self.screensize)
-        pygame.display.set_caption("Python - The Snake Game")
-
-        self.font = pygame.font.Font(None, 25)
+        pygame.display.set_caption("The PySnakeProject")
 
         # Sound
         self.music_mixer = pygame.mixer
@@ -42,7 +40,7 @@ class SceneDirector:
         self.how_to = HowTo(self)
 
         # TODO: Update Current Scene MAIN MENU!
-        self.current_scene = self.game
+        self.current_scene = self.main_menu
 
         # Clock
         self.clock = pygame.time.Clock()

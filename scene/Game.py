@@ -12,6 +12,7 @@ class Game(Scene):
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
         self.bg_surface.fill('green')
+        self.text = self.font.render('Hello World', True, Color('black'), Color('white'))
 
         # Photo Background
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
@@ -75,9 +76,7 @@ class Game(Scene):
     def prebuild(self):
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
-        text = self.scene_dir.font.render('Hello World', True,
-                                          Color('black'), Color('white'))
-        self.window.blit(text, (450, 10))
+        self.window.blit(self.text, (450, 10))
 
         # Sprites in Spritegroups
         if self.sprite_groups:
