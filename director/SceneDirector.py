@@ -76,6 +76,10 @@ class SceneDirector:
     def switch_scene(self):
         pass
 
+    # TODO
+    def set_difficulty(self):
+        pass
+
     def events_to_current_scene(self):
         # E – Event handling - get Current
         self.events = pygame.event.get()
