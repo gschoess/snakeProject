@@ -24,14 +24,7 @@ class MainMenu(Scene):
         self.menu.add.button('Quit', pygame_menu.events.EXIT)
 
     def handle_events(self, events):
-        for gevent in events:
-            if gevent.type == QUIT:
-                self.scene_dir.keepGoing = False
-
-            if gevent.type == KEYDOWN:
-                if gevent.key == K_ESCAPE:
-                    self.scene_dir.keepGoing = False
+        pass
 
     def prebuild(self):
         pass
-        #  self.menu.mainloop(self.scene_dir.window)
