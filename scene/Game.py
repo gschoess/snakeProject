@@ -57,6 +57,7 @@ class Game(Scene):
 
                 elif gevent.key == K_SPACE:
                     self.snake.moving = False if self.snake.moving else True  # ternärer bedingter Operator
+                    print("PAUSE - continue with Arrow-Keys or SPACE")
 
                 elif gevent.key == K_ESCAPE:
                     self.scene_dir.keepGoing = False

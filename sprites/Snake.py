@@ -80,13 +80,14 @@ class Snake(SpriteElement):
     def handle_collision(self):
         # FOOD
         if pygame.sprite.spritecollide(self, self.game.food_sg, True):
-            print("Collision with apple")
+            print("The snake ate an apple and grew.")
             self.grow()
             self.game.create_food()
 
         # DIE
         if pygame.sprite.spritecollide(self, self.body_sprite_group, False):
-            print("Collision with self. Game Over")
+            print("Collision with self. You lost one life.")
+            print("PAUSE - press SPACE to continue")
             self.moving = False
 
     def grow(self):
