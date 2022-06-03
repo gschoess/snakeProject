@@ -18,15 +18,19 @@ class Game(Scene):
         # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
         # Game Entities
-        self.snake = Snake(self)
-        self.snake_sg = self.snake.get_sprite_group()  # Snake Body
+        self.snake = Snake(self)  # snake head
+        self.head_sg = pygame.sprite.GroupSingle()
+        self.head_sg.add(self.snake)
+        self.body_sg = self.snake.get_body_sprite_group()  # Snake Body
+        self.body_sg.add(self.body_sg)
         self.food_sg = pygame.sprite.Group()
         self.create_food()  # initial food
 
         # Collect all SpriteGroups for .update() with every tick
         # Order determines layer of Scene, last appended SpriteGroup is drawn on top
         self.sprite_groups.append(self.food_sg)
-        self.sprite_groups.append(self.snake_sg)
+        self.sprite_groups.append(self.body_sg)
+        self.sprite_groups.append(self.head_sg)
 
     def handle_events(self, events):
 
@@ -51,17 +55,21 @@ class Game(Scene):
                     if self.snake.dir_y != 1:
                         self.snake.turn(0, 1)
 
+                elif gevent.key == K_SPACE:
+                    self.snake.moving = False if self.snake.moving else True  # ternärer bedingter Operator
+
                 elif gevent.key == K_ESCAPE:
                     self.scene_dir.keepGoing = False
 
-        # Calculate new pos Snake head
+        # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
         if self.snake.moving:
             self.snake.set_new_pos_head()
 
-        # run .update() of all sprites
-        if self.sprite_groups:
-            for sprite_group in self.sprite_groups:
-                pygame.sprite.Group.update(sprite_group)
+        # set new rect.top and bottom of all sprites
+        if self.snake.moving:
+            if self.sprite_groups:
+                for sprite_group in self.sprite_groups:
+                    pygame.sprite.Group.update(sprite_group)
 
     def prebuild(self):
         # Background Surfaces
