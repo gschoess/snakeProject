@@ -40,12 +40,6 @@ class Snake(SpriteElement):
         self.set_new_dir(new_dir_x, new_dir_y)
         self.moving = True
 
-    def update(self):
-        self.rect.left = self.new_pos_x
-        self.rect.top = self.new_pos_y
-        self.update_image_rotation()
-        self.handle_collision()
-
     def set_new_pos_head(self):
         if self.moving:
             self.new_pos_x += self.new_dir_x * self.rect.width
@@ -53,11 +47,9 @@ class Snake(SpriteElement):
             self.handle_out_of_window()
             self.body_follow_head()
 
-
     """
     If snake collides with window she returns on the opposite side of the screen.
     """
-
     def handle_out_of_window(self):
         if self.new_pos_x < 0:
             print("left end of screen")
@@ -79,6 +71,12 @@ class Snake(SpriteElement):
         if pygame.sprite.collide_rect(self.body_elements[0], self.body_elements[1]):
             print("Collision of neighbours for no reason")
 
+    def update(self):
+        self.rect.left = self.new_pos_x
+        self.rect.top = self.new_pos_y
+        self.update_image_rotation()
+        self.handle_collision()
+
     def handle_collision(self):
         # FOOD
         if pygame.sprite.spritecollide(self, self.game.food_sg, True):
@@ -91,9 +89,6 @@ class Snake(SpriteElement):
             print("Collision with self. Game Over")
             self.moving = False
 
-    def get_body_sprite_group(self):
-        return self.body_sprite_group
-
     def grow(self):
         last_bel = self.body_elements[len(self.body_elements)-1]
         new_bel = SnakeBodyElement(last_bel.rect.x, last_bel.rect.y, last_bel.dir_x, last_bel.dir_y, self.el_size)
@@ -102,3 +97,6 @@ class Snake(SpriteElement):
     def add_body_element(self, new_bel):
         self.body_elements.append(new_bel)
         self.body_sprite_group.add(new_bel)
+
+    def get_body_sprite_group(self):
+        return self.body_sprite_group

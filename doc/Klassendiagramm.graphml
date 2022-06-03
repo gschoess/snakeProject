@@ -18,18 +18,28 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="151.46117274167983" width="218.04595879556268" x="431.9068938193344" y="82.87937062937061"/>
+          <y:Geometry height="271.03750096971174" width="218.04595879556268" x="431.9068938193344" y="82.87937062937061"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.3017578125" x="87.87210049153134" xml:space="preserve" y="3.0">Snake<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">head: SnakeHead
-body_elements[]: SnakeBodyElement</y:AttributeLabel>
+            <y:AttributeLabel xml:space="preserve">game: Game
+/window: Surface
+moving: bool
+body_elements[]: SnakeBodyElement
+body_sprite_group: pygame.sprite.Group
+el_size: int
+
+</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">turn()
-body_follow_head()
+set_new_pos_head()
 handle_out_of_window()
-eat()
-grow()</y:MethodLabel>
+body_follow_head()
+update()
+handle_collision()
+grow()
+add_body_element()
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -146,7 +156,7 @@ prebuild()
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="92.5" x="-420.2499999999999" y="460.7111013986013"/>
+          <y:Geometry height="28.0" width="92.5" x="-420.2499999999999" y="456.7639860139859"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="67.552734375" x="12.4736328125" xml:space="preserve" y="3.0">MainMenu<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -161,15 +171,15 @@ prebuild()
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="129.00743006993014" width="184.00000000000006" x="-297.7499999999999" y="460.7111013986012"/>
+          <y:Geometry height="129.00743006993014" width="209.74999999999994" x="-312.7499999999999" y="456.76398601398597"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.130859375" x="71.93457031250003" xml:space="preserve" y="3.0">Game<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.130859375" x="84.80957031249997" xml:space="preserve" y="3.0">Game<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">snake: Snake
-apple: FoodElement
-food_sg: pygame.sprite.Group
-snake_sg: pygame.sprite.Group</y:AttributeLabel>
+head_sg: pygame.sprite.GroupSingle
+body_sg: pygame.sprite.Group
+food_sg: pygame.sprite.Group</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve"/>
           </y:UML>
         </y:UMLClassNode>
@@ -262,7 +272,7 @@ set_to_random_pos()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="83.48295454545462" width="218.04595879556268" x="431.9068938193344" y="275.8652931854199"/>
+          <y:Geometry height="83.48295454545462" width="218.04595879556268" x="431.9068938193344" y="401.2810314685313"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="125.37353515625" x="46.33621181965634" xml:space="preserve" y="3.0">SnakeBodyElement<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -389,7 +399,7 @@ update()</y:MethodLabel>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="268.25" y="317.6067704581472"/>
+            <y:Point x="268.25" y="443.0225087412586"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
