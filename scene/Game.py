@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # ‐*‐ encoding: utf‐8 ‐*‐
 import pygame
+import pygame_menu
 from pygame import *
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
@@ -13,6 +14,10 @@ class Game(Scene):
         super().__init__(scene_dir)
         self.bg_surface.fill('green')
         self.text = self.font.render('Hello World', True, Color('black'), Color('white'))
+        self.el_size = 30
+        self.continue_menu = self.init_continue_menu()
+        self.continue_menu.disable()
+        self.continue_menu.full_reset()
 
         # Photo Background
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
@@ -35,33 +40,40 @@ class Game(Scene):
 
     def handle_events(self, events):
 
-        for gevent in events:
-            if gevent.type == QUIT:
-                self.scene_dir.keepGoing = False
+        if self.continue_menu.is_enabled():
+            self.continue_menu.update(events)
 
-            if gevent.type == KEYDOWN:
-                if gevent.key == pygame.K_LEFT:
-                    if self.snake.dir_x != 1:
-                        self.snake.turn(-1, 0)
-
-                elif gevent.key == K_RIGHT:
-                    if self.snake.dir_x != -1:
-                        self.snake.turn(1, 0)
-
-                elif gevent.key == K_UP:
-                    if self.snake.dir_y != -1:
-                        self.snake.turn(0, -1)
-
-                elif gevent.key == K_DOWN:
-                    if self.snake.dir_y != 1:
-                        self.snake.turn(0, 1)
-
-                elif gevent.key == K_SPACE:
-                    self.snake.moving = False if self.snake.moving else True  # ternärer bedingter Operator
-                    print("PAUSE - continue with Arrow-Keys or SPACE")
-
-                elif gevent.key == K_ESCAPE:
+        else:
+            for gevent in events:
+                if gevent.type == QUIT:
                     self.scene_dir.keepGoing = False
+
+                if gevent.type == KEYDOWN:
+                    if gevent.key == pygame.K_LEFT:
+                        if self.snake.dir_x != 1:
+                            self.snake.turn(-1, 0)
+
+                    elif gevent.key == K_RIGHT:
+                        if self.snake.dir_x != -1:
+                            self.snake.turn(1, 0)
+
+                    elif gevent.key == K_UP:
+                        if self.snake.dir_y != -1:
+                            self.snake.turn(0, -1)
+
+                    elif gevent.key == K_DOWN:
+                        if self.snake.dir_y != 1:
+                            self.snake.turn(0, 1)
+
+                    elif gevent.key == K_SPACE:
+                        self.snake.moving = False if self.snake.moving else True  # ternärer bedingter Operator
+                        print("PAUSE - continue with Arrow-Keys or SPACE")
+
+                    elif gevent.key == K_ESCAPE:
+                        self.snake.moving = False
+                        self.continue_menu.enable()
+                        # self.scene_dir.continue_menu.mainloop(self.window, None, fps_limit=self.scene_dir.FPS)
+                        # self.scene_dir.keepGoing = False
 
         # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
         if self.snake.moving:
@@ -83,6 +95,23 @@ class Game(Scene):
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.draw(sprite_group, self.window)
 
+        if self.continue_menu.is_enabled():
+            self.continue_menu.draw(self.window)
+
     def create_food(self):
-        random_food_element = FoodElement(self.window)
+        random_food_element = FoodElement(self)
         self.food_sg.add(random_food_element)
+
+    def init_continue_menu(self):
+        # pygame_menu
+        self.continue_menu = pygame_menu.Menu('Continue?', 400, 400, theme=self.scene_dir.mytheme)
+        self.continue_menu.add.button('Continue', self.disable_menu)
+        # self.continue_menu.add.button('Main Menu', self.scene_dir.main_menu.enable)
+        self.continue_menu.add.button('Main Menu', self.back_to_main_menu)
+        return self.continue_menu
+
+    def disable_menu(self):
+        self.continue_menu.disable()
+
+    def back_to_main_menu(self):
+        self.scene_dir.main_menu.enable()

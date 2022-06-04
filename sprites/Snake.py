@@ -14,7 +14,7 @@ class Snake(SpriteElement):
         # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
         self.start_dir_x = 1
         self.start_dir_y = 0
-        self.el_size = 10
+        self.el_size = self.game.el_size
         super().__init__(300, 300, self.start_dir_x, self.start_dir_y, 'media/images/snake_head.png', self.el_size,
                          self.el_size, 'media/sounds/pain.wav')
 
@@ -24,10 +24,10 @@ class Snake(SpriteElement):
         # -> because methods of SpriteElement added to sprite_group not available, only the ones of pygame.sprite.sprite
         # -> casting to know type does not work either
         self.body_elements = []
-        self.body_elements.append(SnakeBodyElement(290, 300, 1, 0, self.el_size))
-        self.body_elements.append(SnakeBodyElement(280, 300, 1, 0, self.el_size))
         self.body_elements.append(SnakeBodyElement(270, 300, 1, 0, self.el_size))
-        self.body_elements.append(SnakeBodyElement(260, 300, 1, 0, self.el_size))
+        self.body_elements.append(SnakeBodyElement(240, 300, 1, 0, self.el_size))
+        self.body_elements.append(SnakeBodyElement(210, 300, 1, 0, self.el_size))
+        self.body_elements.append(SnakeBodyElement(180, 300, 1, 0, self.el_size))
         # sprite group - for use with pygame.sprite.Group methods
         self.body_sprite_group = pygame.sprite.Group()
         for sprite in self.body_elements:

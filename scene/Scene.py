@@ -9,7 +9,7 @@ class Scene(ABC):
     def __init__(self, scene_dir):
         self.scene_dir = scene_dir
         self.window = scene_dir.window
-        self.bg_surface = pygame.Surface(self.scene_dir.screensize)
+        self.bg_surface = pygame.Surface(self.scene_dir.SCREENSIZE)
         self.bg_surface.convert()
         self.bg_surface.fill('white')
         self.sprite_groups = []

@@ -14,3 +14,4 @@
 
 # Kann
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird
+- beim Start sieht man Random-Map im Hintergrund mit umherlaufender Schlange
