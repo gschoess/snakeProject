@@ -27,6 +27,6 @@ Get more resources at ansimuz.com, Spread the word!
 
 sound effects:
 Copyright/Attribution Notice: 
-Attribute Little Robot Sound Factory, and provide this link where possible: www.littlerobotsoundfactory.com
+
 
 background music:
