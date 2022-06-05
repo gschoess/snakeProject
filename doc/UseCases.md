@@ -2,9 +2,11 @@
 - ViewController für Views: Hauptmenü, Spiel, Highscore, HowTO
 - Bedienung der Schlange mit den Pfeiltasten
 - Schlange wird länger, wenn Sie ein FoodElement isst (+ 1 Punkt)
-- Schlange stirbt, wenn sie sich selbst berührt
+- Schlange verliert ein Leben, wenn sie sich selbst berührt (- 1 Leben)
+- restart game
 
 # Soll
+- Sound abspielen, wenn Schlange isst oder ein Leben verliert
 - Hintergrundmusik in Abhängigkeit von Scene
 - 3 Level incl. 3 verschiedener TiledMaps
 - Schlange wird kürzer (Punktverlust), unverwundbar, kann Loch graben, wenn sie ein Item einsetzt, dass sie eingesammelt hat

@@ -10,6 +10,7 @@ class Snake(SpriteElement):
     def __init__(self, game):
         self.game = game
         self.window = self.game.window
+        self.lives = 1
         self.moving = False  # necessary attribut to disallow start moving against direction when snake at rest
         # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
         self.start_dir_x = 1
@@ -84,11 +85,13 @@ class Snake(SpriteElement):
             self.grow()
             self.game.create_food()
 
-        # DIE
+        # LOSE LIFE
         if pygame.sprite.spritecollide(self, self.body_sprite_group, False):
             print("Collision with self. You lost one life.")
             print("PAUSE - press SPACE to continue")
             self.moving = False
+            if self.lives > 0:
+                self.lives -= 1
 
     def grow(self):
         last_bel = self.body_elements[len(self.body_elements)-1]

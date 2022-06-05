@@ -3,6 +3,8 @@
 import pygame
 import pygame_menu
 from pygame import *
+
+from director import SceneDirector
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
 from sprites.Snake import Snake
@@ -13,7 +15,6 @@ class Game(Scene):
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
         self.bg_surface.fill('green')
-        self.text = self.font.render('Hello World', True, Color('black'), Color('white'))
         self.el_size = 30
         self.continue_menu = self.init_continue_menu()
         self.continue_menu.disable()
@@ -38,15 +39,23 @@ class Game(Scene):
         self.sprite_groups.append(self.body_sg)
         self.sprite_groups.append(self.head_sg)
 
+        # Text
+        self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
+
     def handle_events(self, events):
 
         if self.continue_menu.is_enabled():
             self.continue_menu.update(events)
 
         else:
+            print("events are handled")
             for gevent in events:
                 if gevent.type == QUIT:
                     self.scene_dir.keepGoing = False
+
+                if gevent.type == SceneDirector.BACKTOMAIN:
+                    print("BACKTOMAIN event handled")
+                    self.back_to_main_menu()
 
                 if gevent.type == KEYDOWN:
                     if gevent.key == pygame.K_LEFT:
@@ -85,7 +94,16 @@ class Game(Scene):
                 for sprite_group in self.sprite_groups:
                     pygame.sprite.Group.update(sprite_group)
 
+        # game over
+        if self.snake.lives == 0:
+            self.snake.lives = -1
+            self.scene_dir.active_menu = self.scene_dir.highscore_menu
+            self.scene_dir.highscore_menu.enable()
+
     def prebuild(self):
+        # Rerender text
+        self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
+
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
         self.window.blit(self.text, (450, 10))
@@ -95,6 +113,7 @@ class Game(Scene):
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.draw(sprite_group, self.window)
 
+        # Render Menu
         if self.continue_menu.is_enabled():
             self.continue_menu.draw(self.window)
 
@@ -114,4 +133,6 @@ class Game(Scene):
         self.continue_menu.disable()
 
     def back_to_main_menu(self):
-        self.scene_dir.main_menu.enable()
+        self.scene_dir.active_menu = self.scene_dir.main_menu
+        self.scene_dir.active_menu.enable()
+
