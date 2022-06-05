@@ -12,6 +12,7 @@ from sprites.Snake import Snake
 BACKTOMAIN = USEREVENT + 1
 back_to_main_event = pygame.event.Event(BACKTOMAIN, message="Return to main Menu!")
 
+
 # STATIC methods
 def init_my_theme():
     mytheme = pygame_menu.themes.THEME_SOLARIZED.copy()
@@ -45,7 +46,6 @@ class Game(Scene):
         self.how_to_menu = self.init_how_to_menu()
         self.highscore_menu = self.init_highscore_menu()
         self.main_menu = self.init_main_menu()
-        self.active_menu = self.main_menu
 
         # Game Entities
         self.init_game()
@@ -72,12 +72,8 @@ class Game(Scene):
 
     def handle_events(self, events):
 
-        if self.active_menu.is_enabled():
-            for gevent in events:
-                if gevent.type == BACKTOMAIN:
-                    print("BACKTOMAIN event handled")
-                    self.activate_menu(self.main_menu)
-            self.active_menu.update(events)
+        if self.main_menu.is_enabled():
+            self.main_menu.update(events)
 
         else:
             print("events are handled")
@@ -108,7 +104,8 @@ class Game(Scene):
 
                     elif gevent.key == K_ESCAPE:
                         self.snake.moving = False
-                        self.activate_menu(self.continue_menu)
+                        self.main_menu._current = self.continue_menu
+                        self.main_menu.enable()
 
         # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
         if self.snake.moving:
@@ -123,7 +120,10 @@ class Game(Scene):
         # game over
         if self.snake.lives == 0:
             self.snake.lives = "dead"
-            self.activate_menu(self.highscore_menu)
+            self.main_menu._current = self.highscore_menu
+
+            self.main_menu.enable()
+            # self.activate_menu(self.highscore_menu)
 
     def prebuild(self):
         # Rerender text
@@ -138,12 +138,8 @@ class Game(Scene):
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.draw(sprite_group, self.window)
 
-        # Render Menu
-        if self.continue_menu.is_enabled():
-            self.continue_menu.draw(self.window)
-
-        if self.active_menu.is_enabled():
-            self.active_menu.draw(self.window)
+        if self.main_menu.is_enabled():
+            self.main_menu.draw(self.window)
 
     def create_food(self):
         random_food_element = FoodElement(self)
@@ -151,14 +147,14 @@ class Game(Scene):
 
     def start_game(self):
         self.init_game()
-        self.active_menu.disable()
+        self.main_menu.disable()
 
     # TODO Menu Design!!
     def init_continue_menu(self):
         # pygame_menu
         self.continue_menu = pygame_menu.Menu('Continue?', 400, 400, theme=self.mytheme)
         self.continue_menu.add.button('Continue', self.disable_menu)
-        self.continue_menu.add.button('Main Menu', self.back_to_main_event)
+        self.continue_menu.add.button('Main Menu', self.back_to_main)
         return self.continue_menu
 
     def init_main_menu(self):
@@ -174,7 +170,8 @@ class Game(Scene):
     def init_highscore_menu(self):
         # pygame_menu
         self.highscore_menu = pygame_menu.Menu('Highscore', 400, 400, theme=self.mytheme)
-        self.highscore_menu.add.button('Main Menu', self.back_to_main_event)
+        # self.highscore_menu.add.button('Main Menu', self.back_to_main_event())
+        self.highscore_menu.add.button('Main Menu', self.back_to_main)
         return self.highscore_menu
 
     def init_how_to_menu(self):
@@ -183,18 +180,11 @@ class Game(Scene):
         self.how_to_menu.add.button('Main Menu', pygame_menu.events.BACK)
         return self.how_to_menu
 
-    def activate_menu(self, menu):
-        self.active_menu = menu
-        self.active_menu.enable()
+    def back_to_main(self):
+        self.main_menu._current = self.main_menu
 
     def disable_menu(self):
-        self.active_menu.disable()
+        self.main_menu.disable()
 
-    def back_to_main_event(self):
-        print("BACKTOMAIN event fired")
-        pygame.event.post(back_to_main_event)
-
-    # TODO
     def set_difficulty(self):
         pass
-
