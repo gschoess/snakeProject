@@ -4,6 +4,7 @@
 - Schlange wird länger, wenn Sie ein FoodElement isst (+ 1 Punkt)
 - Schlange verliert ein Leben, wenn sie sich selbst berührt (- 1 Leben)
 - restart game
+- Vom Highscore zurück zu main
 
 # Soll
 - Sound abspielen, wenn Schlange isst oder ein Leben verliert
