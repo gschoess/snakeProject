@@ -32,7 +32,7 @@ class SceneDirector:
         # Sound
         self.music_mixer = pygame.mixer
 
-        #  Precreate Game Scene
+        # Precreate Game Scene
         self.game = Game(self)
         self.current_scene = self.game
 
