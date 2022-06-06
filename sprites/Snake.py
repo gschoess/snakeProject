@@ -86,6 +86,7 @@ class Snake(SpriteElement):
         if pygame.sprite.spritecollide(self, self.body_sprite_group, False):
             print("Collision with self. You lost one life.")
             print("PAUSE - press SPACE to continue")
+            self.play_sound()
             self.moving = False
             if self.lives > 0:
                 self.lives -= 1

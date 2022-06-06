@@ -26,7 +26,6 @@
             <y:AttributeLabel xml:space="preserve">game: Game
 /window: Surface
 moving: bool
-body_elements[]: SnakeBodyElement
 body_sprite_group: pygame.sprite.Group
 el_size: int
 
@@ -38,7 +37,7 @@ body_follow_head()
 update()
 handle_collision()
 grow()
-add_body_element()
+get_body_elements() -&gt; [SnakeBodyElement]
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
