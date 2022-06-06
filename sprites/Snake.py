@@ -1,12 +1,18 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
+from typing import cast, List
+
 import pygame.sprite
 
+from sprites.FoodElement import FoodElement
 from sprites.SnakeBodyElement import SnakeBodyElement
 from sprites.SpriteElement import SpriteElement
 
 
 class Snake(SpriteElement):
+
+    food_collision_sprite_list: [FoodElement]
+
     def __init__(self, game):
         self.game = game
         self.window = self.game.window
@@ -80,7 +86,10 @@ class Snake(SpriteElement):
 
     def handle_collision(self):
         # FOOD
-        if pygame.sprite.spritecollide(self, self.game.food_sg, True):
+        food_collision_sprite_list = pygame.sprite.spritecollide(self, self.game.food_sg, True)
+        if food_collision_sprite_list:
+            food_element = cast(FoodElement, food_collision_sprite_list[0])
+            food_element.play_sound()
             print("The snake ate an apple and grew.")
             self.grow()
             self.game.create_food()

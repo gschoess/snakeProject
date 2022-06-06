@@ -72,7 +72,7 @@ copy()</y:MethodLabel>
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="289.88451814407165" width="230.99999999999994" x="-436.6249999999999" y="-61.75077688533037"/>
+          <y:Geometry height="289.88451814407165" width="230.99999999999994" x="-436.6249999999999" y="-74.11917249417246"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="92.14990234375" x="69.42504882812497" xml:space="preserve" y="3.0">SceneDirector<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -81,9 +81,6 @@ copy()</y:MethodLabel>
 FPS: int
 clock: pygame.time.Clock
 music_mixer: pygame.mixer
-main_menu: pygame_menu.Menu
-highscore_menu: pygame_menu.Menu
-how_to_menu: pygame_menu.Menu
 events: pygame.event []
 clock: pygame.time.Clock
 window: pygame.Surface
@@ -107,6 +104,7 @@ run_game()</y:MethodLabel>
             <y:AttributeLabel xml:space="preserve">scene_dir: SceneDirector
 /window: Surface
 bg_surface: Surface
+*_menu: pygame_menu.Menu
 sprites_groups[]: pygame.sprite.Group</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">handle_events()
 prebuild()

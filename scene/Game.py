@@ -38,14 +38,10 @@ class Game(Scene):
 
         # Menus  !!! Order important (From leaves to root) for initializing, references not updated after initializing the menu !!!
         self.mytheme = init_my_theme()
-        self.continue_menu = self.init_continue_menu()
-        self.continue_menu.disable()
-        self.continue_menu.full_reset()
-
-        # Create menu objects ! Order important (from root to top), initialized menus can not be updated after linking
         self.how_to_menu = self.init_how_to_menu()
         self.highscore_menu = self.init_highscore_menu()
         self.main_menu = self.init_main_menu()
+        self.continue_menu = self.init_continue_menu()
 
         # Game Entities
         self.init_game()
