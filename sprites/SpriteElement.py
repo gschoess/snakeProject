@@ -36,6 +36,10 @@ class SpriteElement(pygame.sprite.Sprite):
         self.rect.left = randint(0, surface.get_rect().width - self.rect.width)
         self.rect.left -= self.rect.left % self.rect.width
 
+    def update_position(self):
+        self.rect.left = self.new_pos_x
+        self.rect.top = self.new_pos_y
+
     def play_sound(self):
         self.sound.play()
 
@@ -46,6 +50,8 @@ class SpriteElement(pygame.sprite.Sprite):
                 or (self.dir_y == -1 and self.new_dir_x == 1):
             self.image = pygame.transform.rotate(self.image, -90)   # rotation angle must be counter-clockwise!
             print("turn right")
+        elif self.dir_x == -self.new_dir_x and self.dir_y == -self.new_dir_y:  # for virtual going against direction underground
+            self.image = pygame.transform.rotate(self.image, 180)
         elif self.dir_x == self.new_dir_x and self.dir_y == self.new_dir_y:
             pass  # start or straight on no turning needed
         else:

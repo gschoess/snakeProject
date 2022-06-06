@@ -19,3 +19,7 @@
 # Kann
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird
 - beim Intro sieht man Random-Map im Hintergrund mit umherlaufender Schlange
+
+# BugsToFix
+- wenn Löcher zu nah beieinander liegen, werden keine neuen Löcher mehr erzeugt
+-> Das Letzt Elemeent bleibt transparent??

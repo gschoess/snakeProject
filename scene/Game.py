@@ -6,6 +6,7 @@ from pygame import *
 from director.GameMenuManager import MenuManager
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
+from sprites.MoleHole import MoleHole
 from sprites.Snake import Snake
 
 
@@ -13,13 +14,14 @@ class Game(Scene):
 
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
+        self.mole_hole_sg = None
         self.text = None
         self.food_sg = None
         self.body_sg = None
         self.head_sg = None
         self.snake = None
         self.bg_surface.fill('green')
-        self.el_size = 30
+        self.el_size = 40
         self.score_surface = None
         self.score = 0
 
@@ -42,10 +44,13 @@ class Game(Scene):
         self.body_sg = self.snake.get_body_sprite_group()  # Snake Body
         self.body_sg.add(self.body_sg)
         self.food_sg = pygame.sprite.Group()
+        self.mole_hole_sg = pygame.sprite.Group()
         self.create_food()  # initial food
+        self.create_mole_hole_couple()
 
         # Collect all SpriteGroups for .update() with every tick
         # Order determines layer of Scene, last appended SpriteGroup is drawn on top
+        self.sprite_groups.append(self.mole_hole_sg)
         self.sprite_groups.append(self.food_sg)
         self.sprite_groups.append(self.body_sg)
         self.sprite_groups.append(self.head_sg)
@@ -131,8 +136,15 @@ class Game(Scene):
             self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
-        random_food_element = FoodElement(self)
-        self.food_sg.add(random_food_element)
+        self.food_sg.add(FoodElement(self))
+
+    def create_mole_hole_couple(self):
+        mh1 = MoleHole(self)
+        mh2 = MoleHole(self)
+        mh1.set_connected_hole(mh2)
+        mh2.set_connected_hole(mh1)
+        self.mole_hole_sg.add(mh1)
+        self.mole_hole_sg.add(mh2)
 
     def start_game(self):
         self.init_game()
