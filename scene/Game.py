@@ -1,24 +1,12 @@
 #!/usr/bin/python
 # ‐*‐ encoding: utf‐8 ‐*‐
 import pygame
-import pygame_menu
-from pygame_menu import sound
 from pygame import *
 
+from director.MenuManager import MenuManager
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
 from sprites.Snake import Snake
-
-# Custom Event to get back to Main Menu from Highscore
-BACKTOMAIN = USEREVENT + 1
-back_to_main_event = pygame.event.Event(BACKTOMAIN, message="Return to main Menu!")
-
-
-# STATIC methods
-def init_my_theme():
-    mytheme = pygame_menu.themes.THEME_SOLARIZED.copy()
-    mytheme.title_font = pygame_menu.font.FONT_8BIT
-    return mytheme
 
 
 class Game(Scene):
@@ -37,14 +25,8 @@ class Game(Scene):
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
         # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
-        # Menus  !!! Order important (From leaves to root) for initializing, references not updated after initializing the menu !!!
-        self.mytheme = init_my_theme()
-        self.engine = self.init_sound_engine()
-        self.how_to_menu = self.init_how_to_menu()
-        self.highscore_menu = self.init_highscore_menu()
-        self.main_menu = self.init_main_menu()
-        self.continue_menu = self.init_continue_menu()
-        self.engine.play_event()
+        # Menu Manager
+        self.mmgr = MenuManager(self)
 
         # Game Entities
         self.init_game()
@@ -71,8 +53,8 @@ class Game(Scene):
 
     def handle_events(self, events):
 
-        if self.main_menu.is_enabled():
-            self.main_menu.update(events)
+        if self.mmgr.main_menu.is_enabled():
+            self.mmgr.main_menu.update(events)
 
         else:
             for gevent in events:
@@ -102,9 +84,9 @@ class Game(Scene):
 
                     elif gevent.key == K_ESCAPE:
                         self.snake.moving = False
-                        self.main_menu._current = self.continue_menu
-                        self.engine.play_event()
-                        self.main_menu.enable()
+                        self.mmgr.main_menu._current = self.mmgr.continue_menu
+                        self.mmgr.engine.play_event()
+                        self.mmgr.main_menu.enable()
 
         # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
         if self.snake.moving:
@@ -119,9 +101,9 @@ class Game(Scene):
         # game over
         if self.snake.lives == 0:
             self.snake.lives = "dead"
-            self.main_menu._current = self.highscore_menu
+            self.mmgr.main_menu._current = self.mmgr.highscore_menu
 
-            self.main_menu.enable()
+            self.mmgr.main_menu.enable()
             # self.activate_menu(self.highscore_menu)
 
     def prebuild(self):
@@ -137,8 +119,8 @@ class Game(Scene):
             for sprite_group in self.sprite_groups:
                 pygame.sprite.Group.draw(sprite_group, self.window)
 
-        if self.main_menu.is_enabled():
-            self.main_menu.draw(self.window)
+        if self.mmgr.main_menu.is_enabled():
+            self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
         random_food_element = FoodElement(self)
@@ -146,52 +128,8 @@ class Game(Scene):
 
     def start_game(self):
         self.init_game()
-        self.engine.play_close_menu()
-        self.main_menu.disable()
-
-    # TODO Menu Design!!
-    def init_continue_menu(self):
-        # pygame_menu
-        self.continue_menu = pygame_menu.Menu('Continue?', 400, 400, theme=self.mytheme)
-        self.continue_menu.add.button('Continue', self.disable_menu)
-        self.continue_menu.add.button('Main Menu', self.back_to_main)
-        return self.continue_menu
-
-    def init_main_menu(self):
-        # pygame_menu
-        self.main_menu = pygame_menu.Menu('Main Menu', 400, 400, theme=self.mytheme)
-        self.main_menu.add.selector('Difficulty :', [('Hard', 1), ('Easy', 2)], onchange=self.set_difficulty())
-        self.main_menu.add.button('Play', self.start_game)
-        self.main_menu.add.button('Highscore', self.highscore_menu)
-        self.main_menu.add.button('How To Play', self.how_to_menu)
-        self.main_menu.add.button('Quit', pygame_menu.events.EXIT)
-        self.main_menu.set_sound(self.engine, recursive=True)  # Apply on menu and all sub-menus
-        return self.main_menu
-
-    def init_sound_engine(self):
-        self.engine = sound.Sound()
-        self.engine.set_sound(sound.SOUND_TYPE_CLOSE_MENU, 'media/music/Inept-70s-Crooks_Looping.mp3', loops=10, fade_ms=5)
-        self.engine.set_sound(sound.SOUND_TYPE_EVENT, 'media/music/The-Hard-Luck-Gang.mp3', loops=10, fade_ms=5)
-        return self.engine
-
-    def init_highscore_menu(self):
-        # pygame_menu
-        self.highscore_menu = pygame_menu.Menu('Highscore', 400, 400, theme=self.mytheme)
-        # self.highscore_menu.add.button('Main Menu', self.back_to_main_event())
-        self.highscore_menu.add.button('Main Menu', self.back_to_main)
-        return self.highscore_menu
-
-    def init_how_to_menu(self):
-        # pygame_menu
-        self.how_to_menu = pygame_menu.Menu('How To Play', 400, 400, theme=self.mytheme)
-        self.how_to_menu.add.button('Main Menu', self.back_to_main)
-        return self.how_to_menu
-
-    def back_to_main(self):
-        self.main_menu._current = self.main_menu
-
-    def disable_menu(self):
-        self.main_menu.close()
+        self.mmgr.engine.play_close_menu()
+        self.mmgr.main_menu.disable()
 
     def set_difficulty(self):
         pass
