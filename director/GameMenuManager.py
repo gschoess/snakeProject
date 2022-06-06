@@ -24,6 +24,7 @@ class MenuManager:
         self.main_menu = self.init_main_menu()
         self.continue_menu = self.init_continue_menu()
         self.engine.play_event()
+        self.your_score_menu = self.init_your_score_menu()
 
     # TODO Menu Design!!
     def init_continue_menu(self):
@@ -69,3 +70,15 @@ class MenuManager:
 
     def disable_menu(self):
         self.main_menu.close()
+
+    def init_your_score_menu(self):
+        # pygame_menu
+        self.your_score_menu = pygame_menu.Menu('Your Score', 400, 400,
+                                                theme=self.mytheme)
+        self.your_score_menu.add.label('You reached: ' + str(self.game.score)
+                                       + ' '
+                                       'points')
+        self.your_score_menu.add.button('Main Menu', self.back_to_main)
+
+        return self.your_score_menu
+

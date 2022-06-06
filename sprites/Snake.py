@@ -81,6 +81,7 @@ class Snake(SpriteElement):
             print("The snake ate an apple and grew.")
             self.grow()
             self.game.create_food()
+            self.game.add_score()
 
         # LOSE LIFE
         if pygame.sprite.spritecollide(self, self.body_sprite_group, False):

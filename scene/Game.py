@@ -20,6 +20,8 @@ class Game(Scene):
         self.snake = None
         self.bg_surface.fill('green')
         self.el_size = 30
+        self.score_surface = None
+        self.score = 0
 
         # Photo Background
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
@@ -50,6 +52,9 @@ class Game(Scene):
 
         # Text
         self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
+        # Score
+        self.score_surface = self.font.render('Score: ' + str(self.score),
+                                              False, 'black', 'white')
 
     def handle_events(self, events):
 
@@ -101,17 +106,21 @@ class Game(Scene):
         # game over
         if self.snake.lives == 0:
             self.snake.lives = "dead"
-            self.mmgr.main_menu._current = self.mmgr.highscore_menu
+            # call the init function to update the score
+            self.mmgr.main_menu._current = self.mmgr.init_your_score_menu()
             self.mmgr.engine.play_event()
             self.mmgr.main_menu.enable()
 
     def prebuild(self):
         # Rerender text
         self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
+        self.score_surface = self.font.render('Score: ' + str(self.score),
+                                              False, 'black', 'white')
 
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
         self.window.blit(self.text, (450, 10))
+        self.window.blit(self.score_surface, (10, 10))
 
         # Sprites in Spritegroups
         if self.sprite_groups:
@@ -132,3 +141,6 @@ class Game(Scene):
 
     def set_difficulty(self):
         pass
+
+    def add_score(self):
+        self.score += 10

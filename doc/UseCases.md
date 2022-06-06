@@ -14,6 +14,7 @@
 - ~~Pause, wenn SPACE~~
 - Random Snake variabler Länge und Position bei Beginn erzeugen 
 - ~~Snake mit festgelegtem Farbmuster~~
+- Special Food mit Timer, gibt extra Punkte, macht Schlange schneller
 
 # Kann
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird
