@@ -76,7 +76,6 @@ class Game(Scene):
             self.main_menu.update(events)
 
         else:
-            print("events are handled")
             for gevent in events:
                 if gevent.type == QUIT:
                     self.scene_dir.keepGoing = False
