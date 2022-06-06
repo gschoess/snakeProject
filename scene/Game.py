@@ -3,7 +3,7 @@
 import pygame
 from pygame import *
 
-from director.MenuManager import MenuManager
+from director.GameMenuManager import MenuManager
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
 from sprites.Snake import Snake
