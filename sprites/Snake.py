@@ -12,14 +12,14 @@ class Snake(SpriteElement):
     def __init__(self, game):
         self.game = game
         self.window = self.game.window
-        self.lives = 1
+        self.lives = 2
         self.moving = False  # necessary attribut to disallow start moving against direction when snake at rest
         # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
         self.start_dir_x = 1
         self.start_dir_y = 0
         self.el_size = self.game.el_size
         super().__init__(300, 300, self.start_dir_x, self.start_dir_y, 'media/images/snake_head.png', self.el_size,
-                         self.el_size, 'media/sounds/pain.wav')
+                         self.el_size, 'media/sounds/pain1.wav')
 
         # TODO No Hardcode Snake - Automatisiert verzweigte Random Snake mit variabler Länge bei Beginn erzeugen
         # BODY - sprite group - for use with pygame.sprite.Group methods
@@ -71,6 +71,7 @@ class Snake(SpriteElement):
         self.rect.top = self.new_pos_y
         self.update_image_rotation()
         self.handle_collision()
+
 
     def handle_collision(self):
         # FOOD

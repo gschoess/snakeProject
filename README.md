@@ -4,29 +4,36 @@ Play Snake like never before
 # Semesterprojekt im Kurs Objektorientierte Skriptsprachen
 Dozent: Prof. Dr. Thomas Preuss
 TH Brandenburg, Sommersemester 2022
-Studenten: 
+Studenten: Gerrit Schöß und Stephan Kost
 
 ## dependencies
 pygame==2.1.2
 -> requirements.txt
 
-## Steuerung
-Pfeiltasten zur Auswahl im Menu und zum Bewegen
-Return zur Auswahl und Bestätigung im Spiel
-Space im Spiel für PAUSE
+## control
+Use the arrow keys to control the snake and navigate the menu
+SPACE to pause
+ESC to exit
 
-## Bildquellen
-selbst erstellt bzw. ????????
-Sounds von https://opengameart.org, alle Creative Commons oder Public Domain
+## credits
 
-### Creative Commons Urheber-Nennungen:
-background:
-Artwork created by ??????????
-License (CC0) You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission: http://creativecommons.org/publicdomain/zero/1.0/
-Get more resources at ansimuz.com, Spread the word!
+### music
 
-sound effects:
-Copyright/Attribution Notice: 
+Menu: 
 
+"THE HARD LUCK GANG" by Eric Matyas (soundimage.org)
 
-background music:
+Game: 
+
+“INEPT ’70s CROOKS” by Eric Matyas (soundimage.org)
+
+### sound effects
+
+pain: Found on freesound.org under CC0 1.0 Universal (CC0 1.0)
+https://freesound.org/people/Under7dude/sounds/163441/
+
+apple-bite: Found on freesound.org under CC0 1.0 Universal (CC0 1.0)
+https://freesound.org/people/wadaltmon/sounds/275015/
+
+### images
+
