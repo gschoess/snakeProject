@@ -1,17 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
-from typing import cast, List
-
+from typing import cast
 import pygame.sprite
-
 from sprites.FoodElement import FoodElement
 from sprites.SnakeBodyElement import SnakeBodyElement
 from sprites.SpriteElement import SpriteElement
 
 
 class Snake(SpriteElement):
-
-    food_collision_sprite_list: [FoodElement]
 
     def __init__(self, game):
         self.game = game
@@ -26,19 +22,12 @@ class Snake(SpriteElement):
                          self.el_size, 'media/sounds/pain.wav')
 
         # TODO No Hardcode Snake - Automatisiert verzweigte Random Snake mit variabler Länge bei Beginn erzeugen
-        # BODY
-        # body_elements [] - for iterating and keeping custom methods available of added Type
-        # -> because methods of SpriteElement added to sprite_group not available, only the ones of pygame.sprite.sprite
-        # -> casting to know type does not work either
-        self.body_elements = []
-        self.body_elements.append(SnakeBodyElement(270, 300, 1, 0, self.el_size))
-        self.body_elements.append(SnakeBodyElement(240, 300, 1, 0, self.el_size))
-        self.body_elements.append(SnakeBodyElement(210, 300, 1, 0, self.el_size))
-        self.body_elements.append(SnakeBodyElement(180, 300, 1, 0, self.el_size))
-        # sprite group - for use with pygame.sprite.Group methods
+        # BODY - sprite group - for use with pygame.sprite.Group methods
         self.body_sprite_group = pygame.sprite.Group()
-        for sprite in self.body_elements:
-            self.body_sprite_group.add(sprite)
+        self.body_sprite_group.add(SnakeBodyElement(270, 300, 1, 0, self.el_size))
+        self.body_sprite_group.add(SnakeBodyElement(240, 300, 1, 0, self.el_size))
+        self.body_sprite_group.add(SnakeBodyElement(210, 300, 1, 0, self.el_size))
+        self.body_sprite_group.add(SnakeBodyElement(180, 300, 1, 0, self.el_size))
 
     """
     Move the BodyElement to the Place of its Predecessor
@@ -72,11 +61,10 @@ class Snake(SpriteElement):
             self.new_pos_y = 0
 
     def body_follow_head(self):
-        self.body_elements[0].set_new_pos(self.rect.left, self.rect.top)
-        for i in range(1, len(self.body_elements)):
-            self.body_elements[i].set_new_pos(self.body_elements[i - 1].rect.left, self.body_elements[i - 1].rect.top)
-        if pygame.sprite.collide_rect(self.body_elements[0], self.body_elements[1]):
-            print("Collision of neighbours for no reason")
+        bel_list = self.get_body_elements()
+        bel_list[0].set_new_pos(self.rect.left, self.rect.top)
+        for i in range(1, len(bel_list)):
+            bel_list[i].set_new_pos(bel_list[i - 1].rect.left, bel_list[i - 1].rect.top)
 
     def update(self):
         self.rect.left = self.new_pos_x
@@ -103,13 +91,13 @@ class Snake(SpriteElement):
                 self.lives -= 1
 
     def grow(self):
-        last_bel = self.body_elements[len(self.body_elements)-1]
+        bel_list = self.get_body_elements()
+        last_bel = bel_list[len(bel_list)-1]
         new_bel = SnakeBodyElement(last_bel.rect.x, last_bel.rect.y, last_bel.dir_x, last_bel.dir_y, self.el_size)
-        self.add_body_element(new_bel)
-
-    def add_body_element(self, new_bel):
-        self.body_elements.append(new_bel)
         self.body_sprite_group.add(new_bel)
+
+    def get_body_elements(self):
+        return cast([SnakeBodyElement], self.body_sprite_group.sprites())
 
     def get_body_sprite_group(self):
         return self.body_sprite_group
