@@ -67,7 +67,7 @@ class Game(Scene):
                     self.scene_dir.keepGoing = False
 
                 if gevent.type == KEYDOWN:
-                    if gevent.key == pygame.K_LEFT:
+                    if gevent.key == K_LEFT:
                         if self.snake.dir_x != 1:
                             self.snake.turn(-1, 0)
 
@@ -76,11 +76,11 @@ class Game(Scene):
                             self.snake.turn(1, 0)
 
                     elif gevent.key == K_UP:
-                        if self.snake.dir_y != -1:
+                        if self.snake.dir_y != 1:
                             self.snake.turn(0, -1)
 
                     elif gevent.key == K_DOWN:
-                        if self.snake.dir_y != 1:
+                        if self.snake.dir_y != -1:
                             self.snake.turn(0, 1)
 
                     elif gevent.key == K_SPACE:
