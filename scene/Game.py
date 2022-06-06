@@ -107,7 +107,7 @@ class Game(Scene):
         if self.snake.lives == 0:
             self.snake.lives = "dead"
             # call the init function to update the score
-            self.mmgr.main_menu._current = self.mmgr.init_your_score_menu()
+            self.mmgr.main_menu._current = self.mmgr.init_end_menu()
             self.mmgr.engine.play_event()
             self.mmgr.main_menu.enable()
 
