@@ -102,9 +102,8 @@ class Game(Scene):
         if self.snake.lives == 0:
             self.snake.lives = "dead"
             self.mmgr.main_menu._current = self.mmgr.highscore_menu
-
+            self.mmgr.engine.play_event()
             self.mmgr.main_menu.enable()
-            # self.activate_menu(self.highscore_menu)
 
     def prebuild(self):
         # Rerender text
