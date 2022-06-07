@@ -23,15 +23,6 @@ class SnakeBodyElement(SpriteElement):
         self.rect.top = self.new_pos_y
         self.image.set_alpha(self.new_alpha)
 
-    def handle_collision(self):
-        if pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False):
-            if self.underground:
-                self.underground = False
-                self.image.set_alpha(255)
-            else:
-                self.underground = True
-                self.image.set_alpha(50)
-
 
     """
     function to iterate the image_list in given order to create snakes with desired pattern

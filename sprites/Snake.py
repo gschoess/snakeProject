@@ -133,10 +133,7 @@ class Snake(SpriteElement):
 
     def handle_collision(self):
 
-        # # BODY ELEMENTS HANDLE THEMSELVES
-        # for i in range(len(self.body_element_list)):
-        #     self.body_element_list[i].handle_collision()
-
+        # Always
         # LAST BODY ELEMENT ENTER OR EXIT MOLE HOLE - The last one closes the Hole
         if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg, True):
             print("Last Element closed the hole")
