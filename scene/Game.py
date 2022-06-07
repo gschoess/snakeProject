@@ -15,6 +15,8 @@ class Game(Scene):
 
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
+        self.mh2 = None
+        self.mh1 = None
         self.mole_hole_sg = None
         self.text = None
         self.food_sg = None
@@ -148,12 +150,17 @@ class Game(Scene):
                 banana.time = pygame.time.get_ticks()
 
     def create_mole_hole_couple(self):
-        mh1 = MoleHole(self)
-        mh2 = MoleHole(self)
-        mh1.set_connected_hole(mh2)
-        mh2.set_connected_hole(mh1)
-        self.mole_hole_sg.add(mh1)
-        self.mole_hole_sg.add(mh2)
+        if not self.mole_hole_sg.sprites():
+            self.mh1 = MoleHole(self)
+            self.mh2 = MoleHole(self)
+
+            print(self.mh1.rect.left, self.mh1.rect.top)
+            print(self.mh2.rect.left, self.mh2.rect.top)
+
+            self.mh1.set_connected_hole(self.mh2)
+            self.mh2.set_connected_hole(self.mh1)
+            self.mole_hole_sg.add(self.mh1)
+            self.mole_hole_sg.add(self.mh2)
 
     def start_game(self):
         self.init_game()

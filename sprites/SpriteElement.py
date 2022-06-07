@@ -24,10 +24,18 @@ class SpriteElement(pygame.sprite.Sprite):
         self.new_pos_y = y
         self.new_dir_x = dir_x
         self.new_dir_y = dir_y
+        self.new_alpha = self.image.get_alpha()
 
     def set_new_dir(self, new_dir_x, new_dir_y):
         self.new_dir_x = new_dir_x
         self.new_dir_y = new_dir_y
+
+    def set_new_pos(self, x, y):
+        self.new_pos_x = x
+        self.new_pos_y = y
+
+    def set_new_image_alpha(self, alpha):
+        self.new_alpha = alpha
 
     def set_to_random_pos(self, surface):
         # set to random position on screen
