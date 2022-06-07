@@ -184,7 +184,7 @@ class Snake(SpriteElement):
                     self.lives -= 1
 
     def go_underground(self):
-        self.image.set_alpha(100)
+        self.image.set_alpha(50)
         print("The SnakeHead is underground")
         self.head_underground = True
 
