@@ -14,7 +14,10 @@ class MoleHole(SpriteElement):
                          'media/sounds/dig.wav')
         self.image.set_colorkey(pygame.Color("white"))  # White color will not be blit.
         self.connected_hole = None
-        self.set_to_random_pos(game.window)
+        while True:
+            self.set_to_random_pos(game.window)
+            if not pygame.sprite.spritecollide(self, game.body_sg, False):
+                break
 
     def set_connected_hole(self, mole_hole):
         self.connected_hole = mole_hole

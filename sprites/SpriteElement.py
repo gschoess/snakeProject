@@ -44,6 +44,8 @@ class SpriteElement(pygame.sprite.Sprite):
         self.rect.left = randint(0, surface.get_rect().width - self.rect.width)
         self.rect.left -= self.rect.left % self.rect.width
 
+
+
     def update_position(self):
         self.rect.left = self.new_pos_x
         self.rect.top = self.new_pos_y

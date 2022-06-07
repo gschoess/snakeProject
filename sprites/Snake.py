@@ -104,11 +104,11 @@ class Snake(SpriteElement):
     def body_follow_head(self):
         bel_list = self.get_body_elements()
         bel_list[0].set_new_pos(self.rect.left, self.rect.top)
-        # bel_list[0].set_new_image_alpha(self.image.get_alpha())
+        bel_list[0].set_new_image_alpha(self.image.get_alpha())
         for i in range(1, len(bel_list)):
             # print("index:", i, ": = ID", self.body_element_list[i].id)
             bel_list[i].set_new_pos(bel_list[i - 1].rect.left, bel_list[i - 1].rect.top)
-            # bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
+            bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
             # input("Press Enter to continue...")
 
     def moving_underground(self):
@@ -133,9 +133,9 @@ class Snake(SpriteElement):
 
     def handle_collision(self):
 
-        # BODY ELEMENTS HANDLE THEMSELF
-        for i in range(len(self.body_element_list)):
-            self.body_element_list[i].handle_collision()
+        # # BODY ELEMENTS HANDLE THEMSELVES
+        # for i in range(len(self.body_element_list)):
+        #     self.body_element_list[i].handle_collision()
 
         # LAST BODY ELEMENT ENTER OR EXIT MOLE HOLE - The last one closes the Hole
         if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg, True):

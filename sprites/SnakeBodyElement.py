@@ -21,7 +21,7 @@ class SnakeBodyElement(SpriteElement):
     def update(self):
         self.rect.left = self.new_pos_x
         self.rect.top = self.new_pos_y
-        # self.image.set_alpha(self.new_alpha)
+        self.image.set_alpha(self.new_alpha)
 
     def handle_collision(self):
         if pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False):
