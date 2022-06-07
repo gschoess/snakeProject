@@ -9,7 +9,9 @@ from sprites.SpriteElement import SpriteElement
 
 class MoleHole(SpriteElement):
     def __init__(self, game):
-        super().__init__(0, 0, 0, 0, 'media/images/mole_hole.png', game.el_size, game.el_size, 'media/sounds/apple_bite.wav')
+        super().__init__(0, 0, 0, 0, 'media/images/mole_hole.png',
+                         game.el_size, game.el_size,
+                         'media/sounds/dig.wav')
         self.image.set_colorkey(pygame.Color("white"))  # White color will not be blit.
         self.connected_hole = None
         self.set_to_random_pos(game.window)

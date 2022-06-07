@@ -32,8 +32,11 @@ Game:
 pain: Found on freesound.org under CC0 1.0 Universal (CC0 1.0)
 https://freesound.org/people/Under7dude/sounds/163441/
 
-apple-bite: Found on freesound.org under CC0 1.0 Universal (CC0 1.0)
-https://freesound.org/people/wadaltmon/sounds/275015/
+apple-bite: Found on opengameart.org under CC0 1.0 Universal (CC0 1.0)
+https://opengameart.org/node/132358
+
+dig: Found on freesound.org under CC0 1.0 Universal (CC0 1.0)
+https://freesound.org/people/BenDrain/sounds/488082/
 
 ### images
 

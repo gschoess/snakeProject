@@ -125,6 +125,7 @@ class Snake(SpriteElement):
         mole_hole_list = pygame.sprite.spritecollide(self, self.game.mole_hole_sg, True)
         if mole_hole_list:
             self.entered_mole_hole = cast(MoleHole, mole_hole_list[0])
+            self.entered_mole_hole.play_sound()
             self.exit_mole_hole = self.entered_mole_hole.connected_hole
             print("Snake is underground")
             self.go_underground()
