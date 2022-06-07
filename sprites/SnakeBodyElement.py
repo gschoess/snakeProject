@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
+import pygame
 
 from sprites.SpriteElement import SpriteElement
 
@@ -18,23 +19,19 @@ class SnakeBodyElement(SpriteElement):
         super().__init__(x, y, dir_x, dir_y, self.get_body_pic_by_order_in_list(), size, size, 'media/sounds/pain1.wav')
 
     def update(self):
-
         self.rect.left = self.new_pos_x
         self.rect.top = self.new_pos_y
-        self.image.set_alpha(self.new_alpha)
+        # self.image.set_alpha(self.new_alpha)
 
-        # if self.game.snake.underground:
-        #     if self.rect.top == self.game.snake.entered_mole_hole.rect.top and self.rect.left == self.game.snake.entered_mole_hole.rect.left:
-        #         self.image.set_alpha(0)
-        #         self.underground = True
-        #
-        # if self.underground:
-        #     if self.rect.top == self.game.snake.exit_mole_hole.rect.top and self.rect.left == self.game.snake.exit_mole_hole.rect.left:
-        #         self.image.set_alpha(255)
-        #         self.underground = False
-        #         if self.game.snake.last_bel == self:
-        #             print("last element overground")
-        #             self.game.create_mole_hole_couple()
+    def handle_collision(self):
+        if pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False):
+            if self.underground:
+                self.underground = False
+                self.image.set_alpha(255)
+            else:
+                self.underground = True
+                self.image.set_alpha(50)
+
 
     """
     function to iterate the image_list in given order to create snakes with desired pattern

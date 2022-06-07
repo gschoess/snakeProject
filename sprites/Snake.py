@@ -100,14 +100,15 @@ class Snake(SpriteElement):
     """
     Every SnakeElement takes the properties of his predecessor while moving forward
     """
+
     def body_follow_head(self):
         bel_list = self.get_body_elements()
         bel_list[0].set_new_pos(self.rect.left, self.rect.top)
-        bel_list[0].set_new_image_alpha(self.image.get_alpha())
+        # bel_list[0].set_new_image_alpha(self.image.get_alpha())
         for i in range(1, len(bel_list)):
             # print("index:", i, ": = ID", self.body_element_list[i].id)
             bel_list[i].set_new_pos(bel_list[i - 1].rect.left, bel_list[i - 1].rect.top)
-            bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
+            # bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
             # input("Press Enter to continue...")
 
     def moving_underground(self):
@@ -126,12 +127,21 @@ class Snake(SpriteElement):
             self.new_pos_y += dir_y * self.el_size
             diff_y += self.dir_y * self.el_size
 
-
     """
     spritecollide() refers to rect.top and rect.left position after update()
     """
 
     def handle_collision(self):
+
+        # BODY ELEMENTS HANDLE THEMSELF
+        for i in range(len(self.body_element_list)):
+            self.body_element_list[i].handle_collision()
+
+        # LAST BODY ELEMENT ENTER OR EXIT MOLE HOLE - The last one closes the Hole
+        if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg, True):
+            print("Last Element closed the hole")
+            if not self.game.mole_hole_sg.sprites():
+                self.game.create_mole_hole_couple()
 
         # EXIT Mole Hole
         if self.head_underground:
@@ -142,19 +152,12 @@ class Snake(SpriteElement):
         #  If Overground eat and collide with self
         else:
             # ENTER MOLE HOLE
-            mole_hole_list = pygame.sprite.spritecollide(self, self.game.mole_hole_sg, True)
+            mole_hole_list = pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False)
             if mole_hole_list:
                 self.entered_mole_hole = cast(MoleHole, mole_hole_list[0])
                 self.entered_mole_hole.play_sound()
                 self.exit_mole_hole = self.entered_mole_hole.connected_hole
                 self.go_underground()
-
-            # !! Letztes BodyElement könnte neu erzeugte Hole löschen!!!
-            # LAST BODY ELEMENT EXIT MOLE HOLE
-            if self.moving:
-                if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg, True):
-                    print("Last Element is overground again")
-                    self.game.create_mole_hole_couple()
 
             # FOOD
             food_collision_sprite_list = pygame.sprite.spritecollide(self, self.game.food_sg, True)
@@ -180,8 +183,6 @@ class Snake(SpriteElement):
                 if self.lives > 0:
                     self.lives -= 1
 
-
-
     def go_underground(self):
         self.image.set_alpha(100)
         print("The SnakeHead is underground")
@@ -193,8 +194,10 @@ class Snake(SpriteElement):
         self.head_underground = False
 
     def grow(self):
-        new_bel = SnakeBodyElement(self.last_bel.rect.x, self.last_bel.rect.y, self.last_bel.dir_x, self.last_bel.dir_y, self.el_size, self.game)
+        new_bel = SnakeBodyElement(self.last_bel.rect.x, self.last_bel.rect.y, self.last_bel.dir_x, self.last_bel.dir_y,
+                                   self.el_size, self.game)
         self.body_sprite_group.add(new_bel)
+        self.body_element_list.append(new_bel)
         self.last_bel = new_bel
 
     def get_body_elements(self):
@@ -202,7 +205,3 @@ class Snake(SpriteElement):
 
     def get_body_sprite_group(self):
         return self.body_sprite_group
-
-
-
-
