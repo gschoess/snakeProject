@@ -40,3 +40,9 @@ https://freesound.org/people/BenDrain/sounds/488082/
 
 ### images
 
+apple: Found on opengameart.org under CC by 4.0 
+https://opengameart.org/content/apple-3
+Copyright: Dave Newton https://www.devnewton.fr/
+
+banana: Found on opengameart.org under CC0
+https://opengameart.org/content/banana

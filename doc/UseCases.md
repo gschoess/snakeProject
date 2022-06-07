@@ -23,3 +23,7 @@
 # BugsToFix
 - wenn Löcher zu nah beieinander liegen, werden keine neuen Löcher mehr erzeugt
 -> Das Letzt Elemeent bleibt transparent??
+  
+- Highscore wird bis zum Neustart nicht aktualisiert
+
+- Zeit bis der Speedboost weg ist variiert??!

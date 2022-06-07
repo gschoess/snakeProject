@@ -3,6 +3,7 @@
 from typing import cast
 import pygame.sprite
 from sprites.FoodElement import FoodElement
+from sprites.PowerFoodElement import PowerFoodElement
 from sprites.MoleHole import MoleHole
 from sprites.SnakeBodyElement import SnakeBodyElement
 from sprites.SpriteElement import SpriteElement
@@ -105,7 +106,12 @@ class Snake(SpriteElement):
         # FOOD
         food_collision_sprite_list = pygame.sprite.spritecollide(self, self.game.food_sg, True)
         if food_collision_sprite_list:
-            food_element = cast(FoodElement, food_collision_sprite_list[0])
+            if type(food_collision_sprite_list[0]).__name__ == 'PowerFoodElement':
+                food_element = cast(PowerFoodElement,
+                                    food_collision_sprite_list[0])
+                self.game.increase_speed()
+            else:
+                food_element = cast(FoodElement, food_collision_sprite_list[0])
             food_element.play_sound()
             print("The snake ate an apple and grew.")
             self.grow()

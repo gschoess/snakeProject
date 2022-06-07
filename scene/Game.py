@@ -2,10 +2,11 @@
 # ‐*‐ encoding: utf‐8 ‐*‐
 import pygame
 from pygame import *
-
+import random
 from director.GameMenuManager import MenuManager
 from scene.Scene import Scene
 from sprites.FoodElement import FoodElement
+from sprites.PowerFoodElement import PowerFoodElement
 from sprites.MoleHole import MoleHole
 from sprites.Snake import Snake
 
@@ -24,6 +25,7 @@ class Game(Scene):
         self.el_size = 40
         self.score_surface = None
         self.score = 0
+        self.speed_up = False
 
         # Photo Background
         # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
@@ -136,7 +138,14 @@ class Game(Scene):
             self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
-        self.food_sg.add(FoodElement(self))
+        if random.random() < 0.6:
+            self.food_sg.add(FoodElement(self))
+        else:
+            banana = PowerFoodElement(self)
+            self.food_sg.add(banana)
+            food_list = pygame.sprite.Group.sprites(self.food_sg)
+            if type(food_list[0]).__name__ == 'PowerFoodElement':
+                banana.time = pygame.time.get_ticks()
 
     def create_mole_hole_couple(self):
         mh1 = MoleHole(self)
@@ -155,4 +164,13 @@ class Game(Scene):
         pass
 
     def add_score(self):
-        self.score += 10
+        if self.speed_up:
+            self.score += 20
+        else:
+            self.score += 10
+
+    def increase_speed(self):
+        self.speed_up = True
+
+    def decrease_speed(self):
+        self.speed_up = False

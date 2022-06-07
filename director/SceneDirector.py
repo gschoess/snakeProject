@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # ‐*‐ encoding: utf‐8 ‐*‐
 import pygame
+import threading
+import time
 import pygame_menu
 from pygame.constants import USEREVENT
 
@@ -42,6 +44,9 @@ class SceneDirector:
         # Events
         self.keepGoing = False  # flag for ending main loop
 
+        # Threads
+        self.thread_started = False
+
         # Start Game
         self.run_game()
 
@@ -53,7 +58,14 @@ class SceneDirector:
         # L - Set up main loop
         while self.keepGoing:
             # T - Timer to set frame rate
-            self.clock.tick(self.FPS)
+            if self.game.speed_up:
+                self.clock.tick(int(self.FPS * 1.5))
+                if not self.thread_started:
+                    self.thread_started = True
+                    thread = threading.Thread(target=self.wait_for_it)
+                    thread.start()
+            else:
+                self.clock.tick(self.FPS)
 
             # E – Event handling & Prebuilding new scene
             events = pygame.event.get()
@@ -62,6 +74,11 @@ class SceneDirector:
 
             # R - Refresh display
             pygame.display.update()
+
+    def wait_for_it(self):
+        time.sleep(5)
+        self.game.decrease_speed()
+        self.thread_started = False
 
     # TODO
     def switch_music(self):
