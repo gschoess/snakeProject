@@ -62,6 +62,7 @@ class Game(Scene):
         # Text
         self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
         # Score
+        self.score = 0
         self.score_surface = self.font.render('Score: ' + str(self.score),
                                               False, 'black', 'white')
 
