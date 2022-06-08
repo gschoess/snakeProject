@@ -19,11 +19,8 @@
 # Kann
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird
 - beim Intro sieht man Random-Map im Hintergrund mit umherlaufender Schlange
+- Intro? Mit freilaufender Spielszene und größerwerdendem Schriftzug
 
 # BugsToFix
-- wenn Löcher zu nah beieinander liegen, werden keine neuen Löcher mehr erzeugt
--> Das Letzt Elemeent bleibt transparent??
-  
-- Highscore wird bis zum Neustart nicht aktualisiert
-
+ - Highscore beim Neustart zurücksetzen
 - Zeit bis der Speedboost weg ist variiert??!
