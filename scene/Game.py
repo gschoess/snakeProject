@@ -153,10 +153,6 @@ class Game(Scene):
         if not self.mole_hole_sg.sprites():
             self.mh1 = MoleHole(self)
             self.mh2 = MoleHole(self)
-
-            print(self.mh1.rect.left, self.mh1.rect.top)
-            print(self.mh2.rect.left, self.mh2.rect.top)
-
             self.mh1.set_connected_hole(self.mh2)
             self.mh2.set_connected_hole(self.mh1)
             self.mole_hole_sg.add(self.mh1)
