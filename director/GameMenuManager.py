@@ -26,7 +26,6 @@ class MenuManager:
         self.highscore_menu = self.init_highscore_menu(self.db)
         self.main_menu = self.init_main_menu()
         self.continue_menu = self.init_continue_menu()
-        self.engine.play_event()
         self.confirm_menu = self.init_confirm_menu()
         self.end_menu = None
 

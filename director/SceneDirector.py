@@ -6,6 +6,7 @@ import time
 import pygame_menu
 from pygame.constants import USEREVENT
 
+from scene.Intro import Intro
 from scene.Game import Game
 
 
@@ -35,8 +36,9 @@ class SceneDirector:
         self.music_mixer = pygame.mixer
 
         # Precreate Game Scene
+        self.intro = Intro(self)
         self.game = Game(self)
-        self.current_scene = self.game
+        self.current_scene = self.intro
 
         # Clock
         self.clock = pygame.time.Clock()
@@ -80,6 +82,9 @@ class SceneDirector:
         self.game.decrease_speed()
         self.thread_started = False
 
-    # TODO
-    def switch_music(self):
-        pass
+    def start_menu(self):
+        self.game.mmgr.main_menu.enable()
+        self.game.mmgr.engine.play_event()
+        self.current_scene = self.game
+
+

@@ -15,23 +15,22 @@ class Game(Scene):
 
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
+        self.auto_mode = True
+        self.text = None
+        self.lives_surface = None
+        self.score_surface = None
         self.mh2 = None
         self.mh1 = None
         self.mole_hole_sg = None
-        self.text = None
         self.food_sg = None
         self.body_sg = None
         self.head_sg = None
         self.snake = None
         self.bg_surface.fill('green')
         self.el_size = 40
-        self.score_surface = None
+
         self.score = 0
         self.speed_up = False
-
-        # Photo Background
-        # self.bg_surface = pygame.image.load("images/bg_lawn_centralPark.jpg")
-        # self.bg_surface = pygame.transform.scale(self.bg_surface, self.scene_dir.screensize)
 
         # Menu Manager
         self.mmgr = MenuManager(self)
@@ -41,7 +40,6 @@ class Game(Scene):
 
     def init_game(self):
         self.sprite_groups.clear()
-
         self.snake = Snake(self)  # snake head
         self.head_sg = pygame.sprite.GroupSingle()
         self.head_sg.add(self.snake)
@@ -58,6 +56,9 @@ class Game(Scene):
         self.sprite_groups.append(self.food_sg)
         self.sprite_groups.append(self.body_sg)
         self.sprite_groups.append(self.head_sg)
+
+        # Menu Manager
+        self.mmgr.main_menu.disable()
 
         # Text
         self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
@@ -98,10 +99,11 @@ class Game(Scene):
                         print("PAUSE - continue with Arrow-Keys or SPACE")
 
                     elif gevent.key == K_ESCAPE:
-                        self.snake.moving = False
-                        self.mmgr.main_menu._current = self.mmgr.continue_menu
-                        self.mmgr.engine.play_event()
-                        self.mmgr.main_menu.enable()
+                        if not self.auto_mode:  # Different ESC Action in Intro
+                            self.snake.moving = False
+                            self.mmgr.main_menu._current = self.mmgr.continue_menu
+                            self.mmgr.engine.play_event()
+                            self.mmgr.main_menu.enable()
 
         # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
         if self.snake.moving:
@@ -114,8 +116,8 @@ class Game(Scene):
                     pygame.sprite.Group.update(sprite_group)
 
         # game over
-        if self.snake.lives == 0:
-            self.snake.lives = "dead"
+        if self.snake.lives == 0 and not self.snake.immortal:
+            self.snake.lives = "-"
             # call the init function to update the score
             self.mmgr.main_menu._current = self.mmgr.init_end_menu()
             self.mmgr.engine.play_event()
@@ -123,13 +125,12 @@ class Game(Scene):
 
     def prebuild(self):
         # Rerender text
-        self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
-        self.score_surface = self.font.render('Score: ' + str(self.score),
-                                              False, 'black', 'white')
+        self.lives_surface = self.font.render('lives: ' + str(self.snake.lives), True, 'black', 'white')
+        self.score_surface = self.font.render('Score: ' + str(self.score), False, 'black', 'white')
 
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
-        self.window.blit(self.text, (450, 10))
+        self.window.blit(self.lives_surface, (570, 10))
         self.window.blit(self.score_surface, (10, 10))
 
         # Sprites in Spritegroups
@@ -163,6 +164,7 @@ class Game(Scene):
         self.init_game()
         self.mmgr.engine.play_close_menu()
         self.mmgr.main_menu.disable()
+        self.auto_mode = False
 
     def set_difficulty(self):
         pass

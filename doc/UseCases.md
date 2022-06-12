@@ -8,18 +8,16 @@
 
 # Soll
 - ~~Sound abspielen, wenn Schlange isst oder ein Leben verliert~~
-- Hintergrundmusik in Abhängigkeit von Scene
-- 3 Level incl. 3 verschiedener TiledMaps
-- Schlange wird kürzer (Punktverlust), unverwundbar, kann Loch graben, wenn sie ein Item einsetzt, dass sie eingesammelt hat
+- Schlange wird kürzer (Punktverlust), unverwundbar, wenn sie ein Item einsetzt, dass sie eingesammelt hat
 - ~~Pause, wenn SPACE~~
-- Random Snake variabler Länge und Position bei Beginn erzeugen 
+- Random Snake variable Position bei Beginn erzeugen 
 - ~~Snake mit festgelegtem Farbmuster~~
-- Special Food mit Timer, gibt extra Punkte, macht Schlange schneller
+~~- Special Food mit Timer, gibt extra Punkte, macht Schlange schneller~~
 
 # Kann
+- 3 Level incl. 3 verschiedener TiledMaps
 - nächstes Level wird erreicht, wenn das sich öffnende Tor erreicht wird
 - beim Intro sieht man Random-Map im Hintergrund mit umherlaufender Schlange
-- Intro? Mit freilaufender Spielszene und größerwerdendem Schriftzug
 
 # BugsToFix
  - Zeit bis der Speedboost weg ist variiert??!

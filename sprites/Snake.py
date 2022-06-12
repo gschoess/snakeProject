@@ -21,6 +21,7 @@ class Snake(SpriteElement):
     def __init__(self, game):
         self.game = game
         self.window = self.game.window
+        self.immortal = False
         self.lives = 2
         self.moving = False  # necessary attribut to disallow start moving against direction when snake at rest
         # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
@@ -31,22 +32,12 @@ class Snake(SpriteElement):
                          self.el_size, 'media/sounds/pain1.wav')
 
         # TODO No Hardcode Snake - Automatisiert verzweigte Random Snake mit variabler Länge bei Beginn erzeugen
-
-        self.body_element_list = []
-        self.body_element_list.append(SnakeBodyElement(280, 320, 1, 0, self.el_size, self.game))
-        self.body_element_list.append(SnakeBodyElement(240, 320, 1, 0, self.el_size, self.game))
-        self.body_element_list.append(SnakeBodyElement(200, 320, 1, 0, self.el_size, self.game))
-        self.last_bel = SnakeBodyElement(160, 320, 1, 0, self.el_size, self.game)
-        self.body_element_list.append(self.last_bel)
-
-        # BODY - sprite group - for use with pygame.sprite.Group methods
         self.body_sprite_group = pygame.sprite.Group()
-        for i in range(len(self.body_element_list)):
-            self.body_sprite_group.add(self.body_element_list[i])
-            # print("index:", i, ": = ID", self.body_element_list[i].id)
-
-        # for j in range(len(self.get_body_elements())):
-        #     print("index:", j, ": = ID", self.get_body_elements()[j].id)
+        self.body_sprite_group.add(SnakeBodyElement(280, 320, 1, 0, self.el_size, self.game))
+        self.body_sprite_group.add(SnakeBodyElement(240, 320, 1, 0, self.el_size, self.game))
+        self.body_sprite_group.add(SnakeBodyElement(200, 320, 1, 0, self.el_size, self.game))
+        self.last_bel = SnakeBodyElement(160, 320, 1, 0, self.el_size, self.game)
+        self.body_sprite_group.add(self.last_bel)
 
         self.last_bel_sg = pygame.sprite.GroupSingle()
         self.last_bel_sg.add(self.last_bel)
@@ -106,7 +97,6 @@ class Snake(SpriteElement):
         bel_list[0].set_new_pos(self.rect.left, self.rect.top)
         bel_list[0].set_new_image_alpha(self.image.get_alpha())
         for i in range(1, len(bel_list)):
-            # print("index:", i, ": = ID", self.body_element_list[i].id)
             bel_list[i].set_new_pos(bel_list[i - 1].rect.left, bel_list[i - 1].rect.top)
             bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
             # input("Press Enter to continue...")
@@ -194,7 +184,6 @@ class Snake(SpriteElement):
         new_bel = SnakeBodyElement(self.last_bel.rect.x, self.last_bel.rect.y, self.last_bel.dir_x, self.last_bel.dir_y,
                                    self.el_size, self.game)
         self.body_sprite_group.add(new_bel)
-        self.body_element_list.append(new_bel)
         self.last_bel = new_bel
 
     def get_body_elements(self):
