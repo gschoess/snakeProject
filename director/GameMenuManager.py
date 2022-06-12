@@ -14,7 +14,6 @@ def init_my_theme():
 
 
 class MenuManager:
-
     def __init__(self, game):
         # Menus  !!! Order important (From leaves to root) for initializing, references not updated after initializing the menu !!!
         self.game = game
@@ -26,7 +25,6 @@ class MenuManager:
         self.highscore_menu = self.init_highscore_menu(self.db)
         self.main_menu = self.init_main_menu()
         self.continue_menu = self.init_continue_menu()
-        self.confirm_menu = self.init_confirm_menu()
         self.end_menu = None
 
     # TODO Menu Design!!
@@ -85,21 +83,6 @@ class MenuManager:
     def disable_menu(self):
         self.main_menu.close()
 
-    def init_confirm_menu(self):
-        self.confirm_menu = pygame_menu.Menu('Confirmed!', 400, 200,
-                                             theme=self.mytheme)
-        self.confirm_menu.add.label('Your Score was added')
-        self.confirm_menu.add.button('Main Menu', self.back_to_main)
-
-        return self.confirm_menu
-
-    def show_confirm(self, name_input):
-        name = name_input.get_value()
-        self.db.add_to_highscore(name, self.game.score)
-        # call init func to update the highscore list does not work
-        self.init_highscore_menu(self.db)
-        self.main_menu._current = self.init_confirm_menu()
-
     def init_end_menu(self):
         # pygame_menu
         self.end_menu = pygame_menu.Menu('Your Score', 400, 400,
@@ -109,7 +92,12 @@ class MenuManager:
         self.end_menu.add.label('Enter your name:')
         name_input = self.end_menu.add.text_input('', default='Player')
         self.end_menu.add.button('Add me!', lambda:
-                                 self.show_confirm(name_input))
+                                 self.show_new_highscore(name_input))
         self.end_menu.add.button('Main Menu', self.back_to_main)
 
         return self.end_menu
+
+    def show_new_highscore(self, name_input):
+        name = name_input.get_value()
+        self.db.add_to_highscore(name, self.game.score)
+        self.main_menu._current = self.init_highscore_menu(self.db)
