@@ -46,6 +46,9 @@ class HighscoreDB:
 
     def get_tenth_highscore(self):
         highscores = self.get_highscores()
-        return highscores[-1][1]
+        if len(highscores) == 10:
+            return highscores[-1][1]
+        else:
+            return 0
 
     # TODO close connection!?
