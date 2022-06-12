@@ -44,4 +44,8 @@ class HighscoreDB:
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
+    def get_tenth_highscore(self):
+        highscores = self.get_highscores()
+        return highscores[-1][1]
+
     # TODO close connection!?

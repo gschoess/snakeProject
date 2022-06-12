@@ -180,3 +180,6 @@ class Game(Scene):
 
     def decrease_speed(self):
         self.speed_up = False
+
+    def check_highscore(self, db):
+        return True if self.score > db.get_tenth_highscore() else False

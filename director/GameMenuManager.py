@@ -89,10 +89,11 @@ class MenuManager:
                                          theme=self.mytheme)
         self.end_menu.add.label('You reached: ' + str(self.game.score) +
                                 'points')
-        self.end_menu.add.label('Enter your name:')
-        name_input = self.end_menu.add.text_input('', default='Player')
-        self.end_menu.add.button('Add me!', lambda:
-                                 self.show_new_highscore(name_input))
+        if self.game.check_highscore(self.db):
+            self.end_menu.add.label('Enter your name:')
+            name_input = self.end_menu.add.text_input('', default='Player')
+            self.end_menu.add.button('Add me!', lambda:
+                                     self.show_new_highscore(name_input))
         self.end_menu.add.button('Main Menu', self.back_to_main)
 
         return self.end_menu
