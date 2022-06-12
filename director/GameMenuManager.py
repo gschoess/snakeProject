@@ -55,11 +55,13 @@ class MenuManager:
 
     def init_highscore_menu(self, db):
         # pygame_menu
-        self.highscore_menu = pygame_menu.Menu('Highscore', 400, 400,
+        self.highscore_menu = pygame_menu.Menu('Highscore', 400, 450,
                                                theme=self.mytheme)
-        self.table = self.highscore_menu.add.table()
+        self.table = self.highscore_menu.add.table(font_size=15)
+
         self.table.default_cell_padding = 5
         self.table.default_cell_align = pygame_menu.locals.ALIGN_CENTER
+        self.table.default_row_background_color = 'white'
         self.table.add_row(['Place', 'Name', 'Score'],
                            cell_font=pygame_menu.font.FONT_FIRACODE_BOLD)
 
@@ -67,13 +69,30 @@ class MenuManager:
         for place, player in enumerate(highscores, start=1):
             self.table.add_row([place, player[0], player[1]])
 
+        self.table.update_cell_style((1, 3), 1, font_size=20,
+                                     font_color=(38, 158, 151))
         self.highscore_menu.add.button('Main Menu', self.back_to_main)
 
         return self.highscore_menu
 
     def init_how_to_menu(self):
         # pygame_menu
-        self.how_to_menu = pygame_menu.Menu('How To Play', 400, 400, theme=self.mytheme)
+        HELP_MESSAGE_1 = 'Use the arrow keys to control the snake'
+        HELP_MESSAGE_2 = 'Press SPACE to pause'
+        HELP_MESSAGE_3 = 'Press ESC to exit'
+        HELP_MESSAGE_4 = 'You have to eat the food to earn points. When you ' \
+                         'eat the banana, you become faster for a short time' \
+                         ' and get more points per food. But hurry up, the ' \
+                         'bananas are only available for a short time! If ' \
+                         'you get into a mole hole, you come out the other ' \
+                         'side. So be careful and don\'t bite your own tail!'
+        self.how_to_menu = pygame_menu.Menu('How To Play', 400, 400,
+                                            theme=self.mytheme)
+        self.how_to_menu.add.label(HELP_MESSAGE_1, max_char=-1, font_size=15)
+        self.how_to_menu.add.label(HELP_MESSAGE_2, font_size=15)
+        self.how_to_menu.add.label(HELP_MESSAGE_3, font_size=15)
+        self.how_to_menu.add.label(HELP_MESSAGE_4, max_char=-1,
+                                   font_size=12, padding=(0, 5, 0, 5))
         self.how_to_menu.add.button('Main Menu', self.back_to_main)
         return self.how_to_menu
 
@@ -91,7 +110,10 @@ class MenuManager:
                                 'points')
         if self.game.check_highscore(self.db):
             self.end_menu.add.label('Enter your name:')
-            name_input = self.end_menu.add.text_input('', default='Player')
+            name_input = self.end_menu.add.text_input('', default='Player',
+                                                      maxchar=15,
+                                                      input_underline='_',
+                                                      input_underline_len=18)
             self.end_menu.add.button('Add me!', lambda:
                                      self.show_new_highscore(name_input))
         self.end_menu.add.button('Main Menu', self.back_to_main)

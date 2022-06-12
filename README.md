@@ -11,9 +11,14 @@ pygame==2.1.2
 -> requirements.txt
 
 ## control
-Use the arrow keys to control the snake and navigate the menu
-SPACE to pause
-ESC to exit
+Use the arrow keys to control the snake and navigate the menu 
+Press SPACE to pause
+Press ESC to exit
+
+You have to eat the food to earn points. When you eat the banana, you become 
+faster for a short time and get more points per food. But hurry up, 
+the bananas are only available for a short time! If you get into a mole hole, 
+you come out the other side. So be careful and don't bite your own tail!
 
 ## credits
 
