@@ -21,5 +21,3 @@
 
 # BugsToFix
  - Zeit bis der Speedboost weg ist variiert??!
- - Highscore-Name eingeben kommt immer, auch wenn man schlechter war
- - Neuer Highscore erscheint erst beim Neustart in der Liste

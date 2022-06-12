@@ -142,14 +142,23 @@ class Game(Scene):
             self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
-        if random.random() < 0.6:
-            self.food_sg.add(FoodElement(self))
+        if random.random() < 0.8:
+            apple = FoodElement(self)
+            self.food_sg.add(apple)
         else:
             banana = PowerFoodElement(self)
             self.food_sg.add(banana)
-            food_list = pygame.sprite.Group.sprites(self.food_sg)
-            if type(food_list[0]).__name__ == 'PowerFoodElement':
-                banana.time = pygame.time.get_ticks()
+            banana.time = pygame.time.get_ticks()
+
+        if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
+                                      False) \
+                or pygame.sprite.groupcollide(self.food_sg,
+                                              self.body_sg, True, False) \
+                or pygame.sprite.groupcollide(self.food_sg,
+                                              self.mole_hole_sg, True,
+                                              False):
+            self.create_food()
+            print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
 
     def create_mole_hole_couple(self):
         if not self.mole_hole_sg.sprites():
