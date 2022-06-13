@@ -39,9 +39,11 @@ class SpriteElement(pygame.sprite.Sprite):
 
     def set_to_random_pos(self, surface):
         # set to random position on screen
-        self.rect.top = randint(0, surface.get_rect().height - self.rect.height)
+        self.rect.top = randint(0, surface.get_rect().height
+                                - self.rect.height)
         self.rect.top -= self.rect.top % self.rect.height
-        self.rect.left = randint(0, surface.get_rect().width - self.rect.width)
+        self.rect.left = randint(0, surface.get_rect().width
+                                 - self.rect.width)
         self.rect.left -= self.rect.left % self.rect.width
 
     def update_position(self):
@@ -56,8 +58,8 @@ class SpriteElement(pygame.sprite.Sprite):
                 or (self.dir_y == 1 and self.new_dir_x == -1) \
                 or (self.dir_x == -1 and self.new_dir_y == -1) \
                 or (self.dir_y == -1 and self.new_dir_x == 1):
-            self.image = pygame.transform.rotate(self.image, -90)   # rotation angle must be counter-clockwise!
-        elif self.dir_x == -self.new_dir_x and self.dir_y == -self.new_dir_y:  # for virtual going against direction underground
+            self.image = pygame.transform.rotate(self.image, -90)   # rotation angle must be counter-clockwise! # noqa
+        elif self.dir_x == -self.new_dir_x and self.dir_y == -self.new_dir_y:  # for virtual going against direction underground # noqa
             self.image = pygame.transform.rotate(self.image, 180)
         elif self.dir_x == self.new_dir_x and self.dir_y == self.new_dir_y:
             pass  # start or straight on no turning needed

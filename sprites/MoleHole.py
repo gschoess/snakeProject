@@ -1,8 +1,5 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
-import datetime
-from random import randint
-
 import pygame
 from sprites.SpriteElement import SpriteElement
 
@@ -12,7 +9,7 @@ class MoleHole(SpriteElement):
         super().__init__(0, 0, 0, 0, 'media/images/mole_hole.png',
                          game.el_size, game.el_size,
                          'media/sounds/dig.wav')
-        self.image.set_colorkey(pygame.Color("white"))  # White color will not be blit.
+        self.image.set_colorkey(pygame.Color("white"))
         self.connected_hole = None
         while True:
             self.set_to_random_pos(game.window)

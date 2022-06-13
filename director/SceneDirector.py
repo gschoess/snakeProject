@@ -5,8 +5,6 @@ from datetime import datetime
 import pygame
 import threading
 import time
-import pygame_menu
-from pygame.constants import USEREVENT
 
 from scene.Intro import Intro
 from scene.Game import Game
@@ -92,5 +90,3 @@ class SceneDirector:
         self.game.mmgr.main_menu.enable()
         self.game.mmgr.engine.play_event()
         self.current_scene = self.game
-
-

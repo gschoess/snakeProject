@@ -22,26 +22,30 @@ class Intro(Scene):
         self.random_event_timer = randint(2, 6)
         self.animation_timer = 10
         self.game.snake.moving = True
-
-
         # Logo Font
 
         self.logo_font_height = 10
         self.logo_visibility = 0
         self.logo_font = pygame.font.Font(pygame_menu.font.FONT_8BIT, 1)
-        self.logo_surface = self.logo_font.render('SNAKE', False, 'black', 'white')
-        self.logo_surface_rect = self.logo_surface.get_rect(center=(self.scene_dir.SCREENSIZE[0]/2, 200))
+        self.logo_surface = self.logo_font.render('SNAKE', False,
+                                                  'black', 'white')
+        self.logo_surface_rect = self.logo_surface.get_rect(
+            center=(self.scene_dir.SCREENSIZE[0]/2, 200))
         self.logo_surface.set_alpha(self.logo_visibility)
 
-        self.logo_sub_font = pygame.font.Font(pygame_menu.font.FONT_8BIT, int(self.logo_font_height/4))
-        self.logo_sub_surface = self.logo_font.render('The Mole Hole Edition', False, 'black', 'white')
-        self.logo_sub_surface_rect = self.logo_surface.get_rect(center=(self.scene_dir.SCREENSIZE[0]/2, 400))
+        self.logo_sub_font = pygame.font.Font(pygame_menu.font.FONT_8BIT,
+                                              int(self.logo_font_height/4))
+        self.logo_sub_surface = self.logo_font.render('The Mole Hole Edition',
+                                                      False, 'black', 'white')
+        self.logo_sub_surface_rect = self.logo_surface.get_rect(
+            center=(self.scene_dir.SCREENSIZE[0]/2, 400))
         self.logo_sub_surface.set_alpha(self.logo_visibility)
 
-        self.auto_events = [pygame.event.Event(pygame.KEYDOWN, key=pygame.K_LEFT),
-                            pygame.event.Event(pygame.KEYDOWN, key=pygame.K_RIGHT),
-                            pygame.event.Event(pygame.KEYDOWN, key=pygame.K_DOWN),
-                            pygame.event.Event(pygame.KEYDOWN, key=pygame.K_UP)]
+        self.auto_events = \
+            [pygame.event.Event(pygame.KEYDOWN, key=pygame.K_LEFT),
+             pygame.event.Event(pygame.KEYDOWN, key=pygame.K_RIGHT),
+             pygame.event.Event(pygame.KEYDOWN, key=pygame.K_DOWN),
+             pygame.event.Event(pygame.KEYDOWN, key=pygame.K_UP)]
 
     def handle_events(self, events):
 
@@ -71,14 +75,24 @@ class Intro(Scene):
                 self.logo_visibility += 5
                 self.logo_font_height += 1
 
-                self.logo_font = pygame.font.Font(pygame_menu.font.FONT_8BIT, self.logo_font_height)
-                self.logo_surface = self.logo_font.render('SNAKE', False, 'black', 'white')
-                self.logo_surface_rect = self.logo_surface.get_rect(center=(self.scene_dir.SCREENSIZE[0]/2, 200))
+                self.logo_font = pygame.font.Font(pygame_menu.font.FONT_8BIT,
+                                                  self.logo_font_height)
+                self.logo_surface = self.logo_font.render('SNAKE', False,
+                                                          'black', 'white')
+                self.logo_surface_rect = \
+                    self.logo_surface.get_rect(
+                        center=(self.scene_dir.SCREENSIZE[0]/2, 200))
                 self.logo_surface.set_alpha(self.logo_visibility)
 
-                self.logo_sub_font = pygame.font.Font(pygame_menu.font.FONT_8BIT, int(self.logo_font_height/6))
-                self.logo_sub_surface = self.logo_sub_font.render('The Mole Hole Edition', False, 'black', 'white')
-                self.logo_sub_surface_rect = self.logo_sub_surface.get_rect(center=(self.scene_dir.SCREENSIZE[0]/2, 400))
+                self.logo_sub_font = \
+                    pygame.font.Font(pygame_menu.font.FONT_8BIT,
+                                     int(self.logo_font_height/6))
+                self.logo_sub_surface = \
+                    self.logo_sub_font.render('The Mole Hole Edition',
+                                              False, 'black', 'white')
+                self.logo_sub_surface_rect = \
+                    self.logo_sub_surface.get_rect(
+                        center=(self.scene_dir.SCREENSIZE[0]/2, 400))
                 self.logo_sub_surface.set_alpha(self.logo_visibility)
 
                 self.animation_timer = 1

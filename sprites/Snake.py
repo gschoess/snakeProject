@@ -23,20 +23,27 @@ class Snake(SpriteElement):
         self.window = self.game.window
         self.immortal = False
         self.lives = 2
-        self.moving = False  # necessary attribut to disallow start moving against direction when snake at rest
-        # TODO alle x,y Tupel in 2D-Vektor packen, standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
+        self.moving = False  # necessary attribut to disallow start moving against direction when snake at rest # noqa
+        # TODO alle x,y Tupel in 2D-Vektor packen,
+        #  standard Tupel mit DOWN, LEFT, RIGHT, UP ersetzen
         self.start_dir_x = 1
         self.start_dir_y = 0
         self.el_size = self.game.el_size
-        super().__init__(320, 320, self.start_dir_x, self.start_dir_y, 'media/images/snake_head.png', self.el_size,
+        super().__init__(320, 320, self.start_dir_x, self.start_dir_y,
+                         'media/images/snake_head.png', self.el_size,
                          self.el_size, 'media/sounds/pain1.wav')
 
-        # TODO No Hardcode Snake - Automatisiert verzweigte Random Snake mit variabler Länge bei Beginn erzeugen
+        # TODO No Hardcode Snake - Automatisiert verzweigte Random Snake
+        #  mit variabler Länge bei Beginn erzeugen
         self.body_sprite_group = pygame.sprite.Group()
-        self.body_sprite_group.add(SnakeBodyElement(280, 320, 1, 0, self.el_size, self.game))
-        self.body_sprite_group.add(SnakeBodyElement(240, 320, 1, 0, self.el_size, self.game))
-        self.body_sprite_group.add(SnakeBodyElement(200, 320, 1, 0, self.el_size, self.game))
-        self.last_bel = SnakeBodyElement(160, 320, 1, 0, self.el_size, self.game)
+        self.body_sprite_group.add(SnakeBodyElement(280, 320, 1, 0,
+                                                    self.el_size, self.game))
+        self.body_sprite_group.add(SnakeBodyElement(240, 320, 1, 0,
+                                                    self.el_size, self.game))
+        self.body_sprite_group.add(SnakeBodyElement(200, 320, 1, 0,
+                                                    self.el_size, self.game))
+        self.last_bel = SnakeBodyElement(160, 320, 1, 0,
+                                         self.el_size, self.game)
         self.body_sprite_group.add(self.last_bel)
 
         self.last_bel_sg = pygame.sprite.GroupSingle()
@@ -71,7 +78,8 @@ class Snake(SpriteElement):
         self.handle_collision()
 
     """
-    If snake collides with window she returns on the opposite side of the screen.
+    If snake collides with window she returns 
+    on the opposite side of the screen.
     """
 
     def handle_out_of_window(self):
@@ -89,7 +97,8 @@ class Snake(SpriteElement):
             self.new_pos_y = 0
 
     """
-    Every SnakeElement takes the properties of his predecessor while moving forward
+    Every SnakeElement takes the properties of his predecessor 
+    while moving forward
     """
 
     def body_follow_head(self):
@@ -97,7 +106,8 @@ class Snake(SpriteElement):
         bel_list[0].set_new_pos(self.rect.left, self.rect.top)
         bel_list[0].set_new_image_alpha(self.image.get_alpha())
         for i in range(1, len(bel_list)):
-            bel_list[i].set_new_pos(bel_list[i - 1].rect.left, bel_list[i - 1].rect.top)
+            bel_list[i].set_new_pos(bel_list[i - 1].rect.left,
+                                    bel_list[i - 1].rect.top)
             bel_list[i].set_new_image_alpha(bel_list[i-1].image.get_alpha())
             # input("Press Enter to continue...")
 
@@ -122,24 +132,27 @@ class Snake(SpriteElement):
     """
 
     def handle_collision(self):
-
         # Always
-        # LAST BODY ELEMENT ENTER OR EXIT MOLE HOLE - The last one closes the Hole
-        if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg, True):
+        # LAST BODY ELEMENT ENTER OR EXIT MOLE HOLE -
+        # The last one closes the Hole
+        if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg,
+                                       True):
             print("Last Element closed the hole")
             if not self.game.mole_hole_sg.sprites():
                 self.game.create_mole_hole_couple()
 
         # EXIT Mole Hole
         if self.head_underground:
-            if pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False):
+            if pygame.sprite.spritecollide(self, self.game.mole_hole_sg,
+                                           False):
                 print("SnakeHead is overground again")
                 self.go_overground()
 
         #  If Overground eat and collide with self
         else:
             # ENTER MOLE HOLE
-            mole_hole_list = pygame.sprite.spritecollide(self, self.game.mole_hole_sg, False)
+            mole_hole_list = pygame.sprite.spritecollide(
+                                self, self.game.mole_hole_sg, False)
             if mole_hole_list:
                 self.entered_mole_hole = cast(MoleHole, mole_hole_list[0])
                 self.entered_mole_hole.play_sound()
@@ -147,14 +160,17 @@ class Snake(SpriteElement):
                 self.go_underground()
 
             # FOOD
-            food_collision_sprite_list = pygame.sprite.spritecollide(self, self.game.food_sg, True)
+            food_collision_sprite_list = pygame.sprite.spritecollide(
+                                            self, self.game.food_sg, True)
             if food_collision_sprite_list:
-                if type(food_collision_sprite_list[0]).__name__ == 'PowerFoodElement':
+                if type(food_collision_sprite_list[0]).__name__ \
+                        == 'PowerFoodElement':
                     food_element = cast(PowerFoodElement,
                                         food_collision_sprite_list[0])
                     self.game.increase_speed()
                 else:
-                    food_element = cast(FoodElement, food_collision_sprite_list[0])
+                    food_element = cast(FoodElement,
+                                        food_collision_sprite_list[0])
                 food_element.play_sound()
                 print("The snake ate an apple and grew.")
                 self.grow()
@@ -162,7 +178,8 @@ class Snake(SpriteElement):
                 self.game.add_score()
 
             # LOSE LIFE
-            if pygame.sprite.spritecollide(self, self.body_sprite_group, False):
+            if pygame.sprite.spritecollide(self,
+                                           self.body_sprite_group, False):
                 print("Collision with self. You lost one life.")
                 print("PAUSE - press SPACE to continue")
                 self.play_sound()
@@ -181,7 +198,8 @@ class Snake(SpriteElement):
         self.head_underground = False
 
     def grow(self):
-        new_bel = SnakeBodyElement(self.last_bel.rect.x, self.last_bel.rect.y, self.last_bel.dir_x, self.last_bel.dir_y,
+        new_bel = SnakeBodyElement(self.last_bel.rect.x, self.last_bel.rect.y,
+                                   self.last_bel.dir_x, self.last_bel.dir_y,
                                    self.el_size, self.game)
         self.body_sprite_group.add(new_bel)
         self.last_bel = new_bel

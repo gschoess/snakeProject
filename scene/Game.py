@@ -51,7 +51,8 @@ class Game(Scene):
         self.create_mole_hole_couple()
 
         # Collect all SpriteGroups for .update() with every tick
-        # Order determines layer of Scene, last appended SpriteGroup is drawn on top
+        # Order determines layer of Scene,
+        # last appended SpriteGroup is drawn on top
         self.sprite_groups.append(self.mole_hole_sg)
         self.sprite_groups.append(self.food_sg)
         self.sprite_groups.append(self.body_sg)
@@ -61,7 +62,8 @@ class Game(Scene):
         self.mmgr.main_menu.disable()
 
         # Text
-        self.text = self.font.render('lives: ' + str(self.snake.lives), True, Color('black'), Color('white'))
+        self.text = self.font.render('lives: ' + str(self.snake.lives), True,
+                                     Color('black'), Color('white'))
         # Score
         self.score = 0
         self.score_surface = self.font.render('Score: ' + str(self.score),
@@ -95,17 +97,20 @@ class Game(Scene):
                             self.snake.turn(0, 1)
 
                     elif gevent.key == K_SPACE:
-                        self.snake.moving = False if self.snake.moving else True  # ternärer bedingter Operator
+                        self.snake.moving = False if self.snake.moving \
+                            else True  # ternärer bedingter Operator
                         print("PAUSE - continue with Arrow-Keys or SPACE")
 
                     elif gevent.key == K_ESCAPE:
                         if not self.auto_mode:  # Different ESC Action in Intro
                             self.snake.moving = False
-                            self.mmgr.main_menu._current = self.mmgr.continue_menu
+                            self.mmgr.main_menu._current = \
+                                self.mmgr.continue_menu
                             self.mmgr.engine.play_event()
                             self.mmgr.main_menu.enable()
 
-        # set new_pos(x,y) Snake head and set consequences (could stop snake moving)
+        # set new_pos(x,y) Snake head and set consequences
+        # (could stop snake moving)
         if self.snake.moving:
             self.snake.set_new_pos_head()
 
@@ -125,8 +130,12 @@ class Game(Scene):
 
     def prebuild(self):
         # Rerender text
-        self.lives_surface = self.font.render('lives: ' + str(self.snake.lives), True, 'black', 'white')
-        self.score_surface = self.font.render('Score: ' + str(self.score), False, 'black', 'white')
+        self.lives_surface = self.font.render('lives: ' +
+                                              str(self.snake.lives), True,
+                                              'black', 'white')
+        self.score_surface = self.font.render('Score: ' +
+                                              str(self.score), False,
+                                              'black', 'white')
 
         # Background Surfaces
         self.window.blit(self.bg_surface, (0, 0))
