@@ -10,6 +10,7 @@ from db.HighscoreDB import HighscoreDB
 def init_my_theme():
     mytheme = pygame_menu.themes.THEME_SOLARIZED.copy()
     mytheme.title_font = pygame_menu.font.FONT_8BIT
+    mytheme.title_font_size = 35
     return mytheme
 
 
@@ -87,7 +88,7 @@ class MenuManager:
                          'you get into a mole hole, you come out the other ' \
                          'side. So be careful and don\'t bite your own tail!'
         self.how_to_menu = pygame_menu.Menu('How To Play', 400, 400,
-                                            theme=self.mytheme)
+                                            theme=self.mytheme, overflow=False)
         self.how_to_menu.add.label(HELP_MESSAGE_1, max_char=-1, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_2, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_3, font_size=15)

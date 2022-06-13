@@ -45,7 +45,7 @@ class Game(Scene):
         self.head_sg.add(self.snake)
         self.body_sg = self.snake.get_body_sprite_group()  # Snake Body
         self.body_sg.add(self.body_sg)
-        self.food_sg = pygame.sprite.Group()
+        self.food_sg = pygame.sprite.GroupSingle()
         self.mole_hole_sg = pygame.sprite.Group()
         self.create_food()  # initial food
         self.create_mole_hole_couple()
@@ -142,23 +142,26 @@ class Game(Scene):
             self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
-        if random.random() < 0.8:
-            apple = FoodElement(self)
-            self.food_sg.add(apple)
+        if self.speed_up:
+            self.food_sg.add(FoodElement(self))
         else:
-            banana = PowerFoodElement(self)
-            self.food_sg.add(banana)
-            banana.time = pygame.time.get_ticks()
+            if random.random() < 0.8:
+                apple = FoodElement(self)
+                self.food_sg.add(apple)
+            else:
+                banana = PowerFoodElement(self)
+                self.food_sg.add(banana)
+                banana.time = pygame.time.get_ticks()
 
-        if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
-                                      False) \
-                or pygame.sprite.groupcollide(self.food_sg,
-                                              self.body_sg, True, False) \
-                or pygame.sprite.groupcollide(self.food_sg,
-                                              self.mole_hole_sg, True,
-                                              False):
-            self.create_food()
-            print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
+            if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
+                                          False) \
+                    or pygame.sprite.groupcollide(self.food_sg,
+                                                  self.body_sg, True, False) \
+                    or pygame.sprite.groupcollide(self.food_sg,
+                                                  self.mole_hole_sg, True,
+                                                  False):
+                self.create_food()
+                print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
 
     def create_mole_hole_couple(self):
         if not self.mole_hole_sg.sprites():

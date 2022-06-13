@@ -9,7 +9,7 @@ class PowerFoodElement(SpriteElement):
     def __init__(self, game):
         super().__init__(0, 0, 0, 0, 'media/images/banana.png', game.el_size,
                          game.el_size, 'media/sounds/apple_bite.ogg')
-        self.image.set_colorkey(pygame.Color("black"))  # White color will not be blit.
+        self.image.set_colorkey(pygame.Color("black"))
         self.set_to_random_pos(game.window)
         self.game = game
         self.time = None
@@ -17,7 +17,8 @@ class PowerFoodElement(SpriteElement):
 
     def update(self):
         if self.time is not None:  # timer will be started in game loop
-            # after lifetime is over, kill the sprite
+            # after lifetime is over, a new food will spawn,
+            # killing the sprite is not neccessary because of GroupSingle
+            # behavior
             if pygame.time.get_ticks() - self.time >= self.LIFETIME:
-                self.kill()
                 self.game.create_food()

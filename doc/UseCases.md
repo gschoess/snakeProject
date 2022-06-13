@@ -20,4 +20,4 @@
 - beim Intro sieht man Random-Map im Hintergrund mit umherlaufender Schlange
 
 # BugsToFix
- - Zeit bis der Speedboost weg ist variiert??!
+ - Konstruktor vom GameMenuManger wird zweimal aufgerufen? 
