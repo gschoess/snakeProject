@@ -162,15 +162,15 @@ class Game(Scene):
                 self.food_sg.add(banana)
                 banana.time = pygame.time.get_ticks()
 
-            if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
-                                          False) \
-                    or pygame.sprite.groupcollide(self.food_sg,
-                                                  self.body_sg, True, False) \
-                    or pygame.sprite.groupcollide(self.food_sg,
-                                                  self.mole_hole_sg, True,
-                                                  False):
-                self.create_food()
-                print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
+        if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
+                                      False) \
+                or pygame.sprite.groupcollide(self.food_sg,
+                                              self.body_sg, True, False) \
+                or pygame.sprite.groupcollide(self.food_sg,
+                                              self.mole_hole_sg, True,
+                                              False):
+            self.create_food()
+            print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
 
     def create_mole_hole_couple(self):
         if not self.mole_hole_sg.sprites():
