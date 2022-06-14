@@ -8,7 +8,9 @@ Studenten: Gerrit Schöß und Stephan Kost
 
 ## dependencies
 pygame==2.1.2
--> requirements.txt
+pygame-menu==4.2.8
+pyperclip==1.8.2
+typing_extensions==4.2.0
 
 ## control
 Use the arrow keys to control the snake and navigate the menu 
@@ -19,6 +21,8 @@ You have to eat the food to earn points. When you eat the banana, you become
 faster for a short time and get more points per food. But hurry up, 
 the bananas are only available for a short time! If you get into a mole hole, 
 you come out the other side. So be careful and don't bite your own tail!
+
+EASY Mode: Neither bananas nor mole holes ;(
 
 ## credits
 
