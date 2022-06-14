@@ -78,11 +78,7 @@ class SceneDirector:
             pygame.display.update()
 
     def wait_for_it(self):
-        start = datetime.now()
         time.sleep(5)
-        end = datetime.now()
-        delta = (end - start)
-        print('HE SLEPT', delta)
         self.game.decrease_speed()
         self.thread_started = False
 

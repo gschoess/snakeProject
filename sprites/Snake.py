@@ -84,16 +84,12 @@ class Snake(SpriteElement):
 
     def handle_out_of_window(self):
         if self.new_pos_x < 0:
-            print("left end of screen")
             self.new_pos_x = self.window.get_rect().width - self.rect.width
         if (self.new_pos_x + self.rect.width) > self.window.get_rect().width:
-            print("right end of screen")
             self.new_pos_x = 0
         if self.new_pos_y < 0:
-            print("upper end of screen")
             self.new_pos_y = self.window.get_rect().height - self.rect.height
         if (self.new_pos_y + self.rect.height) > self.window.get_rect().height:
-            print("lower end of screen")
             self.new_pos_y = 0
 
     """
@@ -137,7 +133,6 @@ class Snake(SpriteElement):
         # The last one closes the Hole
         if pygame.sprite.spritecollide(self.last_bel, self.game.mole_hole_sg,
                                        True):
-            print("Last Element closed the hole")
             if not self.game.mole_hole_sg.sprites():
                 self.game.create_mole_hole_couple()
 
@@ -145,7 +140,6 @@ class Snake(SpriteElement):
         if self.head_underground:
             if pygame.sprite.spritecollide(self, self.game.mole_hole_sg,
                                            False):
-                print("SnakeHead is overground again")
                 self.go_overground()
 
         #  If Overground eat and collide with self
@@ -172,7 +166,6 @@ class Snake(SpriteElement):
                     food_element = cast(FoodElement,
                                         food_collision_sprite_list[0])
                 food_element.play_sound()
-                print("The snake ate an apple and grew.")
                 self.grow()
                 self.game.create_food()
                 self.game.add_score()
@@ -189,12 +182,10 @@ class Snake(SpriteElement):
 
     def go_underground(self):
         self.image.set_alpha(50)
-        print("The SnakeHead is underground")
         self.head_underground = True
 
     def go_overground(self):
         self.image.set_alpha(255)
-        print("The SnakeHead is back overground")
         self.head_underground = False
 
     def grow(self):

@@ -13,9 +13,10 @@ HELP_MESSAGE_3 = 'Press ESC to exit'
 HELP_MESSAGE_4 = 'You have to eat the food to earn points. When you eat the ' \
                  'banana, you become faster for a short time and get more ' \
                  'points per food. But hurry up, the bananas are only ' \
-                 'available for a short time! If get into a mole hole, ' \
+                 'available for a short time! If you get into a mole hole, ' \
                  'you come out the other side. ' \
                  'So be careful and don\'t bite your own tail!'
+HELP_MESSAGE_5 = 'EASY Mode: Neither bananas nor mole holes ;('
 
 
 def init_my_theme():
@@ -53,7 +54,7 @@ class MenuManager:
         self.main_menu = pygame_menu.Menu('Main Menu', 400, 400,
                                           theme=self.mytheme)
         self.main_menu.add.selector('Difficulty :', [('Hard', 1), ('Easy', 2)],
-                                    onchange=self.game.set_difficulty())
+                                    onchange=self.game.set_difficulty)
         self.main_menu.add.button('Play', self.game.start_game)
         self.main_menu.add.button('Highscore', self.display_highscore)
         self.main_menu.add.button('How To Play', self.how_to_menu)
@@ -100,6 +101,8 @@ class MenuManager:
         self.how_to_menu.add.label(HELP_MESSAGE_2, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_3, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_4, max_char=-1,
+                                   font_size=13, padding=(0, 5, 2, 5))
+        self.how_to_menu.add.label(HELP_MESSAGE_5, max_char=-1,
                                    font_size=13, padding=(0, 5, 2, 5))
         self.how_to_menu.add.button('Main Menu', self.back_to_main)
         return self.how_to_menu

@@ -16,6 +16,7 @@ class Game(Scene):
     def __init__(self, scene_dir):
         super().__init__(scene_dir)
         self.auto_mode = True
+        self.hard_mode = True
         self.text = None
         self.lives_surface = None
         self.score_surface = None
@@ -151,7 +152,7 @@ class Game(Scene):
             self.mmgr.main_menu.draw(self.window)
 
     def create_food(self):
-        if self.speed_up:
+        if self.speed_up or not self.hard_mode:
             self.food_sg.add(FoodElement(self))
         else:
             if random.random() < 0.8:
@@ -163,17 +164,15 @@ class Game(Scene):
                 banana.time = pygame.time.get_ticks()
 
         if pygame.sprite.groupcollide(self.food_sg, self.head_sg, True,
-                                      False) \
-                or pygame.sprite.groupcollide(self.food_sg,
-                                              self.body_sg, True, False) \
-                or pygame.sprite.groupcollide(self.food_sg,
-                                              self.mole_hole_sg, True,
-                                              False):
+                                      False) or \
+           pygame.sprite.groupcollide(self.food_sg, self.body_sg, True,
+                                      False) or \
+           pygame.sprite.groupcollide(self.food_sg, self.mole_hole_sg,
+                                      True, False):
             self.create_food()
-            print('FOOD ZERSTÖRT WEIL UNTER SCHLANGE')
 
     def create_mole_hole_couple(self):
-        if not self.mole_hole_sg.sprites():
+        if not self.mole_hole_sg.sprites() and self.hard_mode:
             self.mh1 = MoleHole(self)
             self.mh2 = MoleHole(self)
             self.mh1.set_connected_hole(self.mh2)
@@ -187,8 +186,11 @@ class Game(Scene):
         self.mmgr.main_menu.disable()
         self.auto_mode = False
 
-    def set_difficulty(self):
-        pass
+    def set_difficulty(self, _, index):
+        if index == 1:
+            self.hard_mode = True
+        else:
+            self.hard_mode = False
 
     def add_score(self):
         if self.speed_up:
