@@ -12,9 +12,9 @@ from scene.Scene import Scene
 
 class Intro(Scene):
 
-    def __init__(self, scene_dir):
+    def __init__(self, scene_dir, game):
         super().__init__(scene_dir)
-        self.game = Game(scene_dir)
+        self.game = game
         self.game.bg_surface.fill('white')
         # self.game.init_game()
         # self.game.mmgr.main_menu.disable()
@@ -53,6 +53,7 @@ class Intro(Scene):
         for event in events:
             if event.type == KEYDOWN:
                 if event.key == K_RETURN or event.key == K_ESCAPE:
+                    self.game.bg_surface.fill('green')
                     self.scene_dir.start_menu()
 
         self.game.handle_events(events)

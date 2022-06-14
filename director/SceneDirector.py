@@ -36,8 +36,8 @@ class SceneDirector:
         self.music_mixer = pygame.mixer
 
         # Precreate Game Scene
-        self.intro = Intro(self)
         self.game = Game(self)
+        self.intro = Intro(self, self.game)
         self.current_scene = self.intro
 
         # Clock

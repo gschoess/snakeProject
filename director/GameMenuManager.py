@@ -6,6 +6,7 @@ import pygame_menu
 from pygame_menu import sound
 from db.HighscoreDB import HighscoreDB
 
+
 HELP_MESSAGE_1 = 'Use the arrow keys to control the snake'
 HELP_MESSAGE_2 = 'Press SPACE to pause'
 HELP_MESSAGE_3 = 'Press ESC to exit'
@@ -34,12 +35,11 @@ class MenuManager:
         self.mytheme = init_my_theme()
         self.engine = self.init_sound_engine()
         self.how_to_menu = self.init_how_to_menu()
-        self.highscore_menu = self.init_highscore_menu(self.db)
+        self.highscore_menu = None
         self.main_menu = self.init_main_menu()
         self.continue_menu = self.init_continue_menu()
         self.end_menu = None
 
-    # TODO Menu Design!!
     def init_continue_menu(self):
         # pygame_menu
         self.continue_menu = pygame_menu.Menu('Continue?', 400, 400,
@@ -55,7 +55,7 @@ class MenuManager:
         self.main_menu.add.selector('Difficulty :', [('Hard', 1), ('Easy', 2)],
                                     onchange=self.game.set_difficulty())
         self.main_menu.add.button('Play', self.game.start_game)
-        self.main_menu.add.button('Highscore', self.highscore_menu)
+        self.main_menu.add.button('Highscore', self.display_highscore)
         self.main_menu.add.button('How To Play', self.how_to_menu)
         self.main_menu.add.button('Quit', pygame_menu.events.EXIT)
         self.main_menu.set_sound(self.engine, recursive=True)  # Apply on menu and all sub-menus # noqa
@@ -100,7 +100,7 @@ class MenuManager:
         self.how_to_menu.add.label(HELP_MESSAGE_2, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_3, font_size=15)
         self.how_to_menu.add.label(HELP_MESSAGE_4, max_char=-1,
-                                   font_size=12, padding=(0, 5, 0, 5))
+                                   font_size=13, padding=(0, 5, 2, 5))
         self.how_to_menu.add.button('Main Menu', self.back_to_main)
         return self.how_to_menu
 
@@ -131,4 +131,7 @@ class MenuManager:
     def show_new_highscore(self, name_input):
         name = name_input.get_value()
         self.db.add_to_highscore(name, self.game.score)
+        self.display_highscore()
+
+    def display_highscore(self):
         self.main_menu._current = self.init_highscore_menu(self.db)
