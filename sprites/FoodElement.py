@@ -10,7 +10,3 @@ class FoodElement(SpriteElement):
                          game.el_size, 'media/sounds/apple_bite.ogg')
         self.image.set_colorkey(pygame.Color("black"))
         self.set_to_random_pos(game.window)
-
-    # TODO
-    def get_random_food_pic_path(self):
-        pass
