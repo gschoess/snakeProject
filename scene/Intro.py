@@ -80,6 +80,9 @@ class Intro(Scene):
                                                   self.logo_font_height)
                 self.logo_surface = self.logo_font.render('SNAKE', False,
                                                           'black', 'white')
+                # background transparency
+                self.logo_surface.set_colorkey(pygame.Color("white"))
+
                 self.logo_surface_rect = \
                     self.logo_surface.get_rect(
                         center=(self.scene_dir.SCREENSIZE[0]/2, 200))
@@ -91,6 +94,10 @@ class Intro(Scene):
                 self.logo_sub_surface = \
                     self.logo_sub_font.render('The Mole Hole Edition',
                                               False, 'black', 'white')
+
+                # background transparency
+                self.logo_sub_surface.set_colorkey(pygame.Color("white"))
+
                 self.logo_sub_surface_rect = \
                     self.logo_sub_surface.get_rect(
                         center=(self.scene_dir.SCREENSIZE[0]/2, 400))
