@@ -1,4 +1,4 @@
-# The PySnakeProject
+# The PySnakeProject - Mole Hole edition
 Play Snake like never before
 
 # Semesterprojekt im Kurs Objektorientierte Skriptsprachen
